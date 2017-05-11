@@ -1,0 +1,326 @@
+\documentclass[11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{enumerate}
+\usepackage[nodayofweek]{datetime}
+\usepackage{xcolor}
+\usepackage{natbib}
+\newcommand{\Real}{\mathbb{R}}
+
+
+\textwidth 15cm
+\setlength{\textheight}{1.1\textheight}
+\newcommand\hi{\hspace*{\parindent}}
+\newcommand\vi{\vspace{\baselineskip}}
+\newcommand\lac{{\mbox{{\Huge\bf L}\hspace{-0.65em}
+\raisebox{-1.2ex}{\Huge\bf A}\hspace{-1.1em}
+\raisebox{-0.6ex}{\Huge\bf C~}}}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Manuscript Reference Number: SCICO-D-17-00062}
+\rhead{Page \thepage\ of \pageref{LastPage}}
+\lfoot{}
+\rfoot{}
+
+\pagenumbering{roman}
+\begin{document}
+\setcounter{page}{1}
+\thispagestyle{empty}
+
+\hoffset -1.5cm \voffset .5cm
+
+\sf
+
+\vspace*{-2.5cm} \hspace*{-0.1cm} {\small
+{\mbox{\begin{minipage}{1.5cm}
+\centerline{\includegraphics[width=1.8cm]{logo_ufam.png}}
+\end{minipage}}} \hspace*{0.5cm}
+\begin{minipage}{11.0cm}{\sc \large \textbf{FEDERAL UNIVERSITY OF AMAZONAS}}\\
+{\sc Faculty of Technology\\}
+{\sc Department of Electronics and Computing}
+\end{minipage}
+} \vspace*{0mm}
+
+\hspace*{-.7cm} {\rule[-1ex]{15cm}{0.03cm}}
+
+\vi \vi
+\begin{flushright}
+\begin{minipage}{7.0cm}\small
+{\bf Please Reply to:}\\
+Mr. Felipe R. Monteiro\\
+Federal University of Amazonas\\
+Department of Electronics and Computing\\
+Avenida General Rodrigo Ot\'avio, 6200, Coroado\\
+69077-000 - Manaus - AM - BRAZIL\\
+{\em e-mail: felipemonteiro@ufam.edu.br}
+\end{minipage}
+\end{flushright}
+
+\vi \vi
+\hspace*{\fill}{\small Manaus, \today.}
+\vi \vi
+
+\hoffset -1.5cm \voffset .5cm
+
+\begin{flushleft}
+Dr. Mark van den Brand\\
+   Editor-in-Chief \\
+   Science of Computer Programming Software Track
+    \end{flushleft}
+\vi
+
+\begin{flushleft}
+\textbf{REF.:} SCICO-D-17-00062
+    \end{flushleft}
+\vi \vi
+ 
+\indent Dear Dr. Mark van den Brand,
+\vi 
+
+We thank you for asking us to comply with the Referees' reports. We are submitting the revised version of our paper entitled as ``{\em ESBMC-GPU A Context-Bounded Model Checking Tool to Verify CUDA Programs},'' by Felipe R. Monteiro, Erickson H. da S. Alves, Isabela S. Silva, Hussama A. Ismail, Lucas C. Cordeiro, and Eddie B. de Lima Filho.
+
+
+The details of all changes made to our paper and also our response to each comment raised by the reviewers have been included at the end of this letter.
+
+\vi\vi
+
+\indent
+~~~~~~~~~~~~~~~~~~~~~~~~~~~Sincerely,\\
+
+
+
+\begin{quote}
+\begin{quote}
+\begin{flushright}
+
+
+\vi
+\vi
+
+Felipe R. Monteiro~~~~~~~
+\end{flushright}
+\end{quote}
+\end{quote}
+
+\hoffset -1.5cm \voffset .5cm
+
+
+% =============================================
+\newpage
+\subsection*{Authors' Response to the Review Comments on manuscript ``{ESBMC-GPU A Context-Bounded Model Checking Tool to Verify CUDA Programs}'' -- Manuscript Reference Number: SCICO-D-17-00062}
+
+\vi
+
+The authors thank the anonymous reviewers for their valuable and constructive comments, which helped us significantly improve the quality of our manuscript. 
+
+\vi
+
+Our manuscript has been carefully revised and the detailed changes are highlighted in \textcolor{blue}{\bf blue color}, along the original text. Our responses to all comments, which were raised by the reviewers, are given in the sequel, using \textcolor{blue}{\bf blue color} as well.
+
+\vi
+
+We hope that these revisions in the manuscript and our responses will be sufficient to make our manuscript suitable for publication in the Journal of Science of Computer Programming (Software Track).
+
+% =============================================
+\newpage
+
+\vi
+\subsection*{Reviewer \#1 comments followed by the authors' answers:}
+
+\begin{quote}
+
+{\bf Comments to the Authors}
+
+The authors present an extension of the ESBMC tool, to verify CUDA GPU kernels by means of bounded model checking. This is an interesting and relevant topic, since GPUs are used increasingly often to speed up applications significantly. However, programming GPU software can be very tedious and error-prone. A formal verifier of GPU code can make the development process much more efficient.
+
+\begin{quote}
+\textcolor{blue}{\textbf{Response:} Response.}
+\end{quote}
+
+{\bf Reviews:}
+
+{\bf (1)} The present submission provides an ok overview of the capabilities of the tool, in my opinion, but the authors never really address the details to fully understand what the tool can and cannot do. For instance, when discussing the experimental evaluation, it is not explained what the source of the bugs is in the various benchmarks.
+
+\begin{quote}
+\textcolor{blue}{\textbf{Response:} Here.}
+\end{quote}
+
+  \begin{itemize}
+  \item Are there clear differences in the types of bugs that the different tools being compared can detect?
+  
+  \begin{quote}
+  \textcolor{blue}{\textbf{Response:} Here.}
+  \end{quote}
+  
+  \item Which types could ESBMC-GPU handle in particular better than the other tools, and why?
+  
+  \begin{quote}
+  \textcolor{blue}{\textbf{Response:} Here.}
+  \end{quote}
+  
+  \item To what extent does ESBMC-GPU support CUDA?
+  
+  \begin{quote}
+  \textcolor{blue}{\textbf{Response:} Here.}
+  \end{quote}
+  
+  \item Can ESBMC-GPU handle variables in different types of memory?
+  
+  \begin{quote}
+  \textcolor{blue}{\textbf{Response:} Here.}
+  \end{quote}
+  
+  \item (Shared, global, thread registers?), and inter-warp communication, for instance?
+  
+  \begin{quote}
+  \textcolor{blue}{\textbf{Response:} Here.}
+  \end{quote}
+  
+  \item In that respect, what does COM cover, and what remains to be added?
+  
+  \begin{quote}
+  \textcolor{blue}{\textbf{Response:} Here.}
+  \end{quote}
+  
+  \item Is the memory model for the different types of memory complete?
+  
+  \begin{quote}
+  \textcolor{blue}{\textbf{Response:} Here.}
+  \end{quote}
+  
+  \end{itemize}
+
+{\bf (2)} Another paragraph that raises questions is the second on page 3. It seems to say that COM uses pthread functions to simulate GPU kernels. Is that so, and why is it necessary to simulate them? Is this safe to do, because some features in CUDA are not available in C/C++. How do the authors handle those, or do they not?
+
+\begin{quote}
+\textcolor{blue}{\textbf{Response:} Here.}
+\end{quote}
+
+{\bf (3)} At some point, the authors mention in passing that Microsoft C++ AMP projects have been used for the evaluation. Does this mean that this language is also supported, or are the benchmarks translated?
+
+\begin{quote}
+\textcolor{blue}{\textbf{Response:} Here.}
+\end{quote}
+
+{\bf (4)} Concluding, I would like to see an overall more detailed discussion of the capabilities of the tool.
+
+\begin{quote}
+\textcolor{blue}{\textbf{Response:} Here.}
+\end{quote}
+
+{\bf (5)} Detailed comments:
+\begin{itemize}
+\item Page 2
+  \begin{itemize}
+  \item space-state exploration $\rightarrow$ state-space exploration;
+  
+    \begin{quote}
+    \textcolor{blue}{\textbf{Response:} Response}
+    \end{quote}
+
+  \item ESBMC-GPU builds on top of ESBMC $\rightarrow$ ESBMC-GPU is built on top of ESBMC;
+  
+    \begin{quote}
+    \textcolor{blue}{\textbf{Response:} Response}
+    \end{quote}
+
+  \end{itemize}
+\item Page 3
+  \begin{itemize}
+  \item consists in $\rightarrow$ consists of;
+  
+    \begin{quote}
+    \textcolor{blue}{\textbf{Response:} Response}
+    \end{quote}
+
+  \item Besides, in: remove ``Besides'';
+  
+    \begin{quote}
+    \textcolor{blue}{\textbf{Response:} Response}
+    \end{quote}
+
+  \item reduce state space $\rightarrow$ reduce the state space;
+  
+    \begin{quote}
+    \textcolor{blue}{\textbf{Response:} Response}
+    \end{quote}
+
+  \end{itemize}
+\item Page 4
+  \begin{itemize}
+  \item if multiple threads perform unsynchronized 90 access to shared-memory locations: to the same memory locations, it is crucial to mention that;
+  
+    \begin{quote}
+    \textcolor{blue}{\textbf{Response:} Response}
+    \end{quote}
+
+  \item has been systematically explored $\rightarrow$ have been systematically explored;
+  
+    \begin{quote}
+    \textcolor{blue}{\textbf{Response:} Response}
+    \end{quote}
+
+  \item Therefore: the next conclusion does not follow logically from the previous statements, so ``therefore'' should be removed here;
+  
+    \begin{quote}
+    \textcolor{blue}{\textbf{Response:} Response}
+    \end{quote}
+
+  \end{itemize}
+\item Page 5
+  \begin{itemize}
+  \item Figure 2: between lines 17 and 18, the contents of {\tt dev\_a} should be copied to {\tt a} with a {\tt cudaMemcpy}, otherwise the subsequent check is quite useless;
+  
+    \begin{quote}
+    \textcolor{blue}{\textbf{Response:} Response}
+    \end{quote}
+
+  \end{itemize}
+\item Page 6
+  \begin{itemize}
+  \item In addition $\rightarrow$ On the other hand;
+  
+    \begin{quote}
+    \textcolor{blue}{\textbf{Response:} Response}
+    \end{quote}
+
+  \item Besides, it further simplifies verification models: further compared to what? How does it make it easier?
+  
+    \begin{quote}
+    \textcolor{blue}{\textbf{Response:} Response}
+    \end{quote}
+
+  \item if compared: remove ``if'';
+  
+    \begin{quote}
+    \textcolor{blue}{\textbf{Response:} Response}
+    \end{quote}
+
+  \item stream interleaving: what is this?
+  
+    \begin{quote}
+    \textcolor{blue}{\textbf{Response:} Response}
+    \end{quote}
+
+  \item  to reduce the number of thread interleavings: in what respect? Not reducing the number of threads, right? You already use the 2-thread simplification;
+  
+    \begin{quote}
+    \textcolor{blue}{\textbf{Response:} Response}
+    \end{quote}
+
+  \end{itemize}
+\end{itemize}
+
+\end{quote}
+
+\label{LastPage}
+
+% \printbibliography
+
+\end{document} 
