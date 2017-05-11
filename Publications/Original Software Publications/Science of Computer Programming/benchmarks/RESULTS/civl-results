@@ -1,0 +1,235 @@
+========== SUITE: not-supported ========== 
+
+====== SUBSUITE: assertion ====== 
+
+ ---- 077_value_in_assert [NOT SUPPORTED] [ Boost = { Wall time: 0.880000s, CPU time: 2.900000s } ] [ Time = { Wall time: 0.870000s, CPU time: 2.900000s } ]
+TIME: [ Boost { Wall time = 0.88s, CPU time = 2.9s } ] [ Time { Wall time = 0.87s, CPU time = 2.9s } ]
+=====================================
+
+====== SUBSUITE: constant-memory ====== 
+
+ ---- 078_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.450000s, CPU time: 0.900000s } ] [ Time = { Wall time: 0.440000s, CPU time: 0.900000s } ]
+ ---- 079_misc3_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.450000s, CPU time: 0.940000s } ] [ Time = { Wall time: 0.450000s, CPU time: 0.920000s } ]
+ ---- 080_miscfail5 [NOT SUPPORTED] [ Boost = { Wall time: 0.440000s, CPU time: 0.910000s } ] [ Time = { Wall time: 0.430000s, CPU time: 0.900000s } ]
+TIME: [ Boost { Wall time = 1.34s, CPU time = 2.75s } ] [ Time { Wall time = 1.32s, CPU time = 2.72s } ]
+=====================================
+
+====== SUBSUITE: cuda-functions ====== 
+
+ ---- 081_localarrayaccess [NOT SUPPORTED] [ Boost = { Wall time: 1.030000s, CPU time: 3.540000s } ] [ Time = { Wall time: 1.020000s, CPU time: 3.530000s } ]
+TIME: [ Boost { Wall time = 1.03s, CPU time = 3.54s } ] [ Time { Wall time = 1.02s, CPU time = 3.53s } ]
+=====================================
+
+====== SUBSUITE: cudaMallocToFloat ====== 
+
+ ---- 083_definitions [NOT SUPPORTED] [ Boost = { Wall time: 0.370000s, CPU time: 0.620000s } ] [ Time = { Wall time: 0.360000s, CPU time: 0.600000s } ]
+TIME: [ Boost { Wall time = 0.37s, CPU time = 0.62s } ] [ Time { Wall time = 0.36s, CPU time = 0.6s } ]
+=====================================
+
+====== SUBSUITE: null-pointer ====== 
+
+ ---- 089_constant_value_fail [INCORRECT] [ Boost = { Wall time: 2.130000s, CPU time: 7.750000s } ] [ Time = { Wall time: 2.120000s, CPU time: 7.750000s } ]
+ ---- 090_miscfail7 [NOT SUPPORTED] [ Boost = { Wall time: 600.020000s, CPU time: 0.020000s } ] [ Time = { Wall time: 600.000000s, CPU time: 0.000000s } ]
+TIME: [ Boost { Wall time = 602.15s, CPU time = 7.77s } ] [ Time { Wall time = 602.12s, CPU time = 7.75s } ]
+=====================================
+
+====== SUBSUITE: thread-size ====== 
+
+ ---- 091_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.430000s, CPU time: 0.790000s } ] [ Time = { Wall time: 0.420000s, CPU time: 0.780000s } ]
+ ---- 091_pass [NOT SUPPORTED] [ Boost = { Wall time: 0.410000s, CPU time: 0.780000s } ] [ Time = { Wall time: 0.400000s, CPU time: 0.760000s } ]
+ ---- 094_intragroup_scan [NOT SUPPORTED] [ Boost = { Wall time: 0.440000s, CPU time: 0.930000s } ] [ Time = { Wall time: 0.440000s, CPU time: 0.920000s } ]
+ ---- 095_scan_warp [FALSE CORRECT] [ Boost = { Wall time: 4.710000s, CPU time: 18.920000s } ] [ Time = { Wall time: 4.710000s, CPU time: 18.910000s } ]
+ ---- 096_shuffle_fail [INCORRECT] [ Boost = { Wall time: 2.020000s, CPU time: 7.840000s } ] [ Time = { Wall time: 2.020000s, CPU time: 7.820000s } ]
+ ---- 103_misc1 [NOT SUPPORTED] [ Boost = { Wall time: 0.880000s, CPU time: 3.050000s } ] [ Time = { Wall time: 0.880000s, CPU time: 3.030000s } ]
+TIME: [ Boost { Wall time = 8.89s, CPU time = 32.31s } ] [ Time { Wall time = 8.87s, CPU time = 32.22s } ]
+=====================================
+
+====== SUBSUITE: unknown ====== 
+
+ ---- 098_cast_fail [NOT SUPPORTED] [ Boost = { Wall time: 1.850000s, CPU time: 6.980000s } ] [ Time = { Wall time: 1.840000s, CPU time: 6.970000s } ]
+TIME: [ Boost { Wall time = 1.85s, CPU time = 6.98s } ] [ Time { Wall time = 1.84s, CPU time = 6.97s } ]
+=====================================
+
+====== SUBSUITE: verify-kernel ====== 
+
+ ---- 100_funcptr_lt [NOT SUPPORTED] [ Boost = { Wall time: 0.870000s, CPU time: 2.900000s } ] [ Time = { Wall time: 0.870000s, CPU time: 2.890000s } ]
+ ---- 101_funcptr_to_ptr [NOT SUPPORTED] [ Boost = { Wall time: 0.440000s, CPU time: 0.940000s } ] [ Time = { Wall time: 0.440000s, CPU time: 0.930000s } ]
+ ---- 101_funcptr_to_ptr_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.450000s, CPU time: 0.940000s } ] [ Time = { Wall time: 0.440000s, CPU time: 0.930000s } ]
+ ---- 102_basic_argument [NOT SUPPORTED] [ Boost = { Wall time: 0.820000s, CPU time: 2.360000s } ] [ Time = { Wall time: 0.810000s, CPU time: 2.350000s } ]
+ ---- 102_basic_argument_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.710000s, CPU time: 2.120000s } ] [ Time = { Wall time: 0.700000s, CPU time: 2.100000s } ]
+ ---- 107_curand [NOT SUPPORTED] [ Boost = { Wall time: 0.440000s, CPU time: 0.910000s } ] [ Time = { Wall time: 0.430000s, CPU time: 0.900000s } ]
+ ---- 108_curand_mtgp32 [NOT SUPPORTED] [ Boost = { Wall time: 0.410000s, CPU time: 0.740000s } ] [ Time = { Wall time: 0.400000s, CPU time: 0.740000s } ]
+ ---- 109_curand_test [NOT SUPPORTED] [ Boost = { Wall time: 0.390000s, CPU time: 0.640000s } ] [ Time = { Wall time: 0.380000s, CPU time: 0.610000s } ]
+ ---- 110_curand_init_race_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.420000s, CPU time: 0.760000s } ] [ Time = { Wall time: 0.420000s, CPU time: 0.750000s } ]
+ ---- 111_curand_mtgp32_block_race [NOT SUPPORTED] [ Boost = { Wall time: 0.370000s, CPU time: 0.620000s } ] [ Time = { Wall time: 0.360000s, CPU time: 0.610000s } ]
+ ---- 112_curand_mtgp32_race [NOT SUPPORTED] [ Boost = { Wall time: 0.420000s, CPU time: 0.750000s } ] [ Time = { Wall time: 0.410000s, CPU time: 0.750000s } ]
+ ---- 113_curand_race_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.410000s, CPU time: 0.730000s } ] [ Time = { Wall time: 0.400000s, CPU time: 0.730000s } ]
+TIME: [ Boost { Wall time = 6.15s, CPU time = 14.41s } ] [ Time { Wall time = 6.06s, CPU time = 14.29s } ]
+=====================================
+
+
+
+========== SUITE: supported ========== 
+
+====== SUBSUITE: array-bounds ====== 
+
+ ---- 001_unhandled_varlen [NOT SUPPORTED] [ Boost = { Wall time: 0.430000s, CPU time: 0.890000s } ] [ Time = { Wall time: 0.430000s, CPU time: 0.870000s } ]
+ ---- 002_add_one_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.910000s, CPU time: 3.130000s } ] [ Time = { Wall time: 0.910000s, CPU time: 3.110000s } ]
+ ---- 003_add_one_pair [NOT SUPPORTED] [ Boost = { Wall time: 0.890000s, CPU time: 2.980000s } ] [ Time = { Wall time: 0.890000s, CPU time: 2.980000s } ]
+ ---- 104_misc8_fail [NOT SUPPORTED] [ Boost = { Wall time: 1.390000s, CPU time: 5.310000s } ] [ Time = { Wall time: 1.380000s, CPU time: 5.290000s } ]
+ ---- 106_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.460000s, CPU time: 0.960000s } ] [ Time = { Wall time: 0.450000s, CPU time: 0.950000s } ]
+TIME: [ Boost { Wall time = 4.08s, CPU time = 13.27s } ] [ Time { Wall time = 4.06s, CPU time = 13.2s } ]
+=====================================
+
+====== SUBSUITE: assertion ====== 
+
+ ---- 004_soundness_issue_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.430000s, CPU time: 0.920000s } ] [ Time = { Wall time: 0.430000s, CPU time: 0.900000s } ]
+ ---- 005_soundness_issue_pair [NOT SUPPORTED] [ Boost = { Wall time: 0.450000s, CPU time: 0.970000s } ] [ Time = { Wall time: 0.440000s, CPU time: 0.940000s } ]
+ ---- 006_unhandled_varval [NOT SUPPORTED] [ Boost = { Wall time: 0.430000s, CPU time: 0.860000s } ] [ Time = { Wall time: 0.430000s, CPU time: 0.860000s } ]
+ ---- 007_testinterprocedural1 [INCORRECT] [ Boost = { Wall time: 2.150000s, CPU time: 8.050000s } ] [ Time = { Wall time: 2.140000s, CPU time: 8.030000s } ]
+ ---- 008_testinterprocedural2 [INCORRECT] [ Boost = { Wall time: 2.090000s, CPU time: 8.050000s } ] [ Time = { Wall time: 2.080000s, CPU time: 8.040000s } ]
+ ---- 009_testinterprocedural3 [INCORRECT] [ Boost = { Wall time: 1.910000s, CPU time: 7.330000s } ] [ Time = { Wall time: 1.910000s, CPU time: 7.320000s } ]
+TIME: [ Boost { Wall time = 7.46s, CPU time = 26.18s } ] [ Time { Wall time = 7.43s, CPU time = 26.09s } ]
+=====================================
+
+====== SUBSUITE: data-racer ====== 
+
+ ---- 010_test3 [INCORRECT] [ Boost = { Wall time: 2.100000s, CPU time: 7.760000s } ] [ Time = { Wall time: 2.090000s, CPU time: 7.760000s } ]
+ ---- 011_value_causing_race [FALSE CORRECT] [ Boost = { Wall time: 2.080000s, CPU time: 7.980000s } ] [ Time = { Wall time: 2.070000s, CPU time: 7.970000s } ]
+ ---- 012_add_tid [NOT SUPPORTED] [ Boost = { Wall time: 0.470000s, CPU time: 1.020000s } ] [ Time = { Wall time: 0.460000s, CPU time: 1.000000s } ]
+ ---- 013_add_zero [NOT SUPPORTED] [ Boost = { Wall time: 0.440000s, CPU time: 0.900000s } ] [ Time = { Wall time: 0.430000s, CPU time: 0.890000s } ]
+ ---- 014_miscfail3 [NOT SUPPORTED] [ Boost = { Wall time: 1.400000s, CPU time: 5.150000s } ] [ Time = { Wall time: 1.390000s, CPU time: 5.150000s } ]
+ ---- 015_miscfail4 [NOT SUPPORTED] [ Boost = { Wall time: 0.450000s, CPU time: 0.900000s } ] [ Time = { Wall time: 0.440000s, CPU time: 0.900000s } ]
+ ---- 016_bad_inter_group [INCORRECT] [ Boost = { Wall time: 1.860000s, CPU time: 7.030000s } ] [ Time = { Wall time: 1.850000s, CPU time: 7.020000s } ]
+ ---- 017_equality_abstraction_issue [FALSE CORRECT] [ Boost = { Wall time: 2.010000s, CPU time: 7.720000s } ] [ Time = { Wall time: 2.000000s, CPU time: 7.700000s } ]
+ ---- 018_testbasicaliasing [INCORRECT] [ Boost = { Wall time: 2.060000s, CPU time: 7.860000s } ] [ Time = { Wall time: 2.060000s, CPU time: 7.840000s } ]
+ ---- 041_test_copy_between_memory_spaces [FALSE CORRECT] [ Boost = { Wall time: 1.870000s, CPU time: 6.890000s } ] [ Time = { Wall time: 1.860000s, CPU time: 6.860000s } ]
+ ---- 042_test_copy_between_pointers [FALSE CORRECT] [ Boost = { Wall time: 2.130000s, CPU time: 8.210000s } ] [ Time = { Wall time: 2.120000s, CPU time: 8.210000s } ]
+ ---- 084_race_on_shared [NOT SUPPORTED] [ Boost = { Wall time: 0.890000s, CPU time: 2.970000s } ] [ Time = { Wall time: 0.880000s, CPU time: 2.950000s } ]
+ ---- 085_shared_int [NOT SUPPORTED] [ Boost = { Wall time: 0.990000s, CPU time: 3.440000s } ] [ Time = { Wall time: 0.980000s, CPU time: 3.440000s } ]
+ ---- 092_2d [NOT SUPPORTED] [ Boost = { Wall time: 0.440000s, CPU time: 0.920000s } ] [ Time = { Wall time: 0.430000s, CPU time: 0.910000s } ]
+ ---- 093_bronken_shuffle [INCORRECT] [ Boost = { Wall time: 2.190000s, CPU time: 8.260000s } ] [ Time = { Wall time: 2.180000s, CPU time: 8.250000s } ]
+ ---- 097_loop_unwind [NOT SUPPORTED] [ Boost = { Wall time: 0.480000s, CPU time: 1.020000s } ] [ Time = { Wall time: 0.480000s, CPU time: 1.010000s } ]
+ ---- 099_test8 [FALSE CORRECT] [ Boost = { Wall time: 2.160000s, CPU time: 8.210000s } ] [ Time = { Wall time: 2.160000s, CPU time: 8.200000s } ]
+TIME: [ Boost { Wall time = 24.02s, CPU time = 86.24s } ] [ Time { Wall time = 23.88s, CPU time = 86.06s } ]
+=====================================
+
+====== SUBSUITE: null-pointer ====== 
+
+ ---- 019_basic_assignment_fail [INCORRECT] [ Boost = { Wall time: 2.420000s, CPU time: 9.470000s } ] [ Time = { Wall time: 2.420000s, CPU time: 9.450000s } ]
+ ---- 020_basic_assignment_pair [NOT SUPPORTED] [ Boost = { Wall time: 602.260000s, CPU time: 0.010000s } ] [ Time = { Wall time: 600.000000s, CPU time: 0.000000s } ]
+ ---- 021_basic_statement_fail [INCORRECT] [ Boost = { Wall time: 2.300000s, CPU time: 9.330000s } ] [ Time = { Wall time: 2.300000s, CPU time: 9.320000s } ]
+ ---- 022_basic_statement_pair [NOT SUPPORTED] [ Boost = { Wall time: 602.230000s, CPU time: 0.000000s } ] [ Time = { Wall time: 600.000000s, CPU time: 0.000000s } ]
+ ---- 023_nulldst [NOT SUPPORTED] [ Boost = { Wall time: 0.480000s, CPU time: 1.070000s } ] [ Time = { Wall time: 0.480000s, CPU time: 1.060000s } ]
+TIME: [ Boost { Wall time = 1209.69s, CPU time = 19.88s } ] [ Time { Wall time = 1205.2s, CPU time = 19.83s } ]
+=====================================
+
+====== SUBSUITE: pass ====== 
+
+ ---- 024_fail [INCORRECT] [ Boost = { Wall time: 1.980000s, CPU time: 7.550000s } ] [ Time = { Wall time: 1.970000s, CPU time: 7.520000s } ]
+ ---- 024_pass [CORRECT] [ Boost = { Wall time: 2.330000s, CPU time: 8.840000s } ] [ Time = { Wall time: 2.320000s, CPU time: 8.820000s } ]
+ ---- 025_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.450000s, CPU time: 0.950000s } ] [ Time = { Wall time: 0.440000s, CPU time: 0.950000s } ]
+ ---- 025_pass [NOT SUPPORTED] [ Boost = { Wall time: 0.450000s, CPU time: 0.970000s } ] [ Time = { Wall time: 0.440000s, CPU time: 0.960000s } ]
+ ---- 026_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.910000s, CPU time: 3.010000s } ] [ Time = { Wall time: 0.910000s, CPU time: 3.000000s } ]
+ ---- 026_pass [NOT SUPPORTED] [ Boost = { Wall time: 0.980000s, CPU time: 3.530000s } ] [ Time = { Wall time: 0.970000s, CPU time: 3.510000s } ]
+ ---- 027_fail [INCORRECT] [ Boost = { Wall time: 1.980000s, CPU time: 7.610000s } ] [ Time = { Wall time: 1.980000s, CPU time: 7.600000s } ]
+ ---- 027_pass [CORRECT] [ Boost = { Wall time: 1.940000s, CPU time: 7.270000s } ] [ Time = { Wall time: 1.930000s, CPU time: 7.250000s } ]
+ ---- 028_fail [INCORRECT] [ Boost = { Wall time: 2.240000s, CPU time: 8.380000s } ] [ Time = { Wall time: 2.230000s, CPU time: 8.360000s } ]
+ ---- 028_pass [CORRECT] [ Boost = { Wall time: 2.230000s, CPU time: 8.580000s } ] [ Time = { Wall time: 2.220000s, CPU time: 8.580000s } ]
+ ---- 029_fail [INCORRECT] [ Boost = { Wall time: 1.990000s, CPU time: 7.400000s } ] [ Time = { Wall time: 1.980000s, CPU time: 7.380000s } ]
+ ---- 029_pass [NOT SUPPORTED] [ Boost = { Wall time: 0.890000s, CPU time: 3.000000s } ] [ Time = { Wall time: 0.880000s, CPU time: 2.980000s } ]
+ ---- 030_fail [INCORRECT] [ Boost = { Wall time: 2.000000s, CPU time: 7.250000s } ] [ Time = { Wall time: 2.000000s, CPU time: 7.240000s } ]
+ ---- 030_pass [CORRECT] [ Boost = { Wall time: 2.100000s, CPU time: 8.010000s } ] [ Time = { Wall time: 2.090000s, CPU time: 8.000000s } ]
+ ---- 031_fail [INCORRECT] [ Boost = { Wall time: 2.060000s, CPU time: 7.710000s } ] [ Time = { Wall time: 2.050000s, CPU time: 7.710000s } ]
+ ---- 031_pass [CORRECT] [ Boost = { Wall time: 1.810000s, CPU time: 6.810000s } ] [ Time = { Wall time: 1.800000s, CPU time: 6.790000s } ]
+ ---- 032_return_value [FALSE CORRECT] [ Boost = { Wall time: 2.200000s, CPU time: 8.760000s } ] [ Time = { Wall time: 2.190000s, CPU time: 8.750000s } ]
+ ---- 032_return_value_fail [INCORRECT] [ Boost = { Wall time: 2.190000s, CPU time: 8.470000s } ] [ Time = { Wall time: 2.180000s, CPU time: 8.460000s } ]
+ ---- 033_scanlargelike [NOT SUPPORTED] [ Boost = { Wall time: 1.380000s, CPU time: 5.250000s } ] [ Time = { Wall time: 1.370000s, CPU time: 5.240000s } ]
+ ---- 033_scanlargelike_fail [NOT SUPPORTED] [ Boost = { Wall time: 1.410000s, CPU time: 5.330000s } ] [ Time = { Wall time: 1.400000s, CPU time: 5.320000s } ]
+ ---- 034_test1 [CORRECT] [ Boost = { Wall time: 2.630000s, CPU time: 10.220000s } ] [ Time = { Wall time: 2.620000s, CPU time: 10.220000s } ]
+ ---- 034_test1_fail [INCORRECT] [ Boost = { Wall time: 2.180000s, CPU time: 7.920000s } ] [ Time = { Wall time: 2.180000s, CPU time: 7.900000s } ]
+ ---- 035_test2 [CORRECT] [ Boost = { Wall time: 3.080000s, CPU time: 11.990000s } ] [ Time = { Wall time: 3.070000s, CPU time: 11.960000s } ]
+ ---- 035_test2_fail [INCORRECT] [ Boost = { Wall time: 2.180000s, CPU time: 7.760000s } ] [ Time = { Wall time: 2.180000s, CPU time: 7.760000s } ]
+ ---- 036_test4 [NOT SUPPORTED] [ Boost = { Wall time: 1.540000s, CPU time: 5.940000s } ] [ Time = { Wall time: 1.540000s, CPU time: 5.930000s } ]
+ ---- 036_test4_fail [NOT SUPPORTED] [ Boost = { Wall time: 1.450000s, CPU time: 5.610000s } ] [ Time = { Wall time: 1.450000s, CPU time: 5.600000s } ]
+ ---- 037_test5 [CORRECT] [ Boost = { Wall time: 2.690000s, CPU time: 10.570000s } ] [ Time = { Wall time: 2.680000s, CPU time: 10.560000s } ]
+ ---- 037_test5_fail [INCORRECT] [ Boost = { Wall time: 1.940000s, CPU time: 7.100000s } ] [ Time = { Wall time: 1.930000s, CPU time: 7.080000s } ]
+ ---- 038_test6 [CORRECT] [ Boost = { Wall time: 1.970000s, CPU time: 7.200000s } ] [ Time = { Wall time: 1.970000s, CPU time: 7.180000s } ]
+ ---- 038_test6_fail [INCORRECT] [ Boost = { Wall time: 2.030000s, CPU time: 7.250000s } ] [ Time = { Wall time: 2.020000s, CPU time: 7.250000s } ]
+ ---- 039_test7 [CORRECT] [ Boost = { Wall time: 2.870000s, CPU time: 11.260000s } ] [ Time = { Wall time: 2.860000s, CPU time: 11.240000s } ]
+ ---- 039_test7_fail [INCORRECT] [ Boost = { Wall time: 1.950000s, CPU time: 7.390000s } ] [ Time = { Wall time: 1.940000s, CPU time: 7.380000s } ]
+ ---- 040_test_bad_pointer_call [NOT SUPPORTED] [ Boost = { Wall time: 1.000000s, CPU time: 3.420000s } ] [ Time = { Wall time: 0.990000s, CPU time: 3.410000s } ]
+ ---- 043_test_pass_value_from_array [FALSE CORRECT] [ Boost = { Wall time: 1.920000s, CPU time: 7.110000s } ] [ Time = { Wall time: 1.910000s, CPU time: 7.100000s } ]
+ ---- 043_test_pass_value_from_array_fail [INCORRECT] [ Boost = { Wall time: 2.060000s, CPU time: 7.540000s } ] [ Time = { Wall time: 2.050000s, CPU time: 7.540000s } ]
+ ---- 044_simplereturn [CORRECT] [ Boost = { Wall time: 1.730000s, CPU time: 6.450000s } ] [ Time = { Wall time: 1.730000s, CPU time: 6.440000s } ]
+ ---- 044_simplereturn_fail [INCORRECT] [ Boost = { Wall time: 2.210000s, CPU time: 8.390000s } ] [ Time = { Wall time: 2.210000s, CPU time: 8.370000s } ]
+ ---- 045_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.900000s, CPU time: 2.940000s } ] [ Time = { Wall time: 0.890000s, CPU time: 2.940000s } ]
+ ---- 045_pass [NOT SUPPORTED] [ Boost = { Wall time: 1.010000s, CPU time: 3.570000s } ] [ Time = { Wall time: 1.010000s, CPU time: 3.550000s } ]
+ ---- 046_always_inline [NOT SUPPORTED] [ Boost = { Wall time: 0.440000s, CPU time: 0.920000s } ] [ Time = { Wall time: 0.430000s, CPU time: 0.910000s } ]
+ ---- 046_always_inline_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.480000s, CPU time: 1.020000s } ] [ Time = { Wall time: 0.480000s, CPU time: 1.000000s } ]
+ ---- 047_fail [INCORRECT] [ Boost = { Wall time: 2.070000s, CPU time: 7.800000s } ] [ Time = { Wall time: 2.060000s, CPU time: 7.790000s } ]
+ ---- 047_pass [CORRECT] [ Boost = { Wall time: 1.940000s, CPU time: 7.700000s } ] [ Time = { Wall time: 1.940000s, CPU time: 7.690000s } ]
+ ---- 048_pass [NOT SUPPORTED] [ Boost = { Wall time: 0.900000s, CPU time: 3.130000s } ] [ Time = { Wall time: 0.890000s, CPU time: 3.130000s } ]
+ ---- 049_fail [INCORRECT] [ Boost = { Wall time: 2.090000s, CPU time: 7.920000s } ] [ Time = { Wall time: 2.080000s, CPU time: 7.910000s } ]
+ ---- 049_pass [CORRECT] [ Boost = { Wall time: 2.070000s, CPU time: 7.840000s } ] [ Time = { Wall time: 2.060000s, CPU time: 7.820000s } ]
+ ---- 050_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.430000s, CPU time: 0.880000s } ] [ Time = { Wall time: 0.430000s, CPU time: 0.880000s } ]
+ ---- 050_pass [NOT SUPPORTED] [ Boost = { Wall time: 0.440000s, CPU time: 0.890000s } ] [ Time = { Wall time: 0.430000s, CPU time: 0.890000s } ]
+ ---- 051_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.430000s, CPU time: 0.890000s } ] [ Time = { Wall time: 0.430000s, CPU time: 0.870000s } ]
+ ---- 051_pass [NOT SUPPORTED] [ Boost = { Wall time: 0.440000s, CPU time: 0.920000s } ] [ Time = { Wall time: 0.440000s, CPU time: 0.910000s } ]
+ ---- 052_initstruct [NOT SUPPORTED] [ Boost = { Wall time: 0.480000s, CPU time: 1.060000s } ] [ Time = { Wall time: 0.480000s, CPU time: 1.050000s } ]
+ ---- 052_initstruct_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.450000s, CPU time: 0.930000s } ] [ Time = { Wall time: 0.450000s, CPU time: 0.930000s } ]
+ ---- 053_misc2 [CORRECT] [ Boost = { Wall time: 1.900000s, CPU time: 7.350000s } ] [ Time = { Wall time: 1.890000s, CPU time: 7.330000s } ]
+ ---- 053_misc2_fail [INCORRECT] [ Boost = { Wall time: 1.840000s, CPU time: 6.900000s } ] [ Time = { Wall time: 1.830000s, CPU time: 6.900000s } ]
+ ---- 054_misc4 [NOT SUPPORTED] [ Boost = { Wall time: 0.880000s, CPU time: 2.990000s } ] [ Time = { Wall time: 0.870000s, CPU time: 2.970000s } ]
+ ---- 055_refined_equality_abstraction [CORRECT] [ Boost = { Wall time: 2.240000s, CPU time: 8.650000s } ] [ Time = { Wall time: 2.240000s, CPU time: 8.650000s } ]
+ ---- 056_fail [INCORRECT] [ Boost = { Wall time: 1.890000s, CPU time: 7.130000s } ] [ Time = { Wall time: 1.880000s, CPU time: 7.110000s } ]
+ ---- 056_pass [CORRECT] [ Boost = { Wall time: 2.000000s, CPU time: 7.720000s } ] [ Time = { Wall time: 2.000000s, CPU time: 7.720000s } ]
+ ---- 057_fail [INCORRECT] [ Boost = { Wall time: 1.950000s, CPU time: 7.440000s } ] [ Time = { Wall time: 1.940000s, CPU time: 7.430000s } ]
+ ---- 057_pass [CORRECT] [ Boost = { Wall time: 2.170000s, CPU time: 8.090000s } ] [ Time = { Wall time: 2.170000s, CPU time: 8.070000s } ]
+ ---- 058_noraceduetoreturn [NOT SUPPORTED] [ Boost = { Wall time: 1.370000s, CPU time: 5.140000s } ] [ Time = { Wall time: 1.360000s, CPU time: 5.130000s } ]
+ ---- 058_noraceduetoreturn_fail [NOT SUPPORTED] [ Boost = { Wall time: 1.420000s, CPU time: 5.300000s } ] [ Time = { Wall time: 1.410000s, CPU time: 5.290000s } ]
+ ---- 059_nestedinline [NOT SUPPORTED] [ Boost = { Wall time: 0.420000s, CPU time: 0.810000s } ] [ Time = { Wall time: 0.410000s, CPU time: 0.810000s } ]
+ ---- 060_test_all [CORRECT] [ Boost = { Wall time: 1.790000s, CPU time: 6.540000s } ] [ Time = { Wall time: 1.790000s, CPU time: 6.520000s } ]
+ ---- 061_pointer_in_structs1 [NOT SUPPORTED] [ Boost = { Wall time: 0.440000s, CPU time: 0.920000s } ] [ Time = { Wall time: 0.440000s, CPU time: 0.920000s } ]
+ ---- 061_pointer_in_structs1_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.440000s, CPU time: 0.930000s } ] [ Time = { Wall time: 0.440000s, CPU time: 0.900000s } ]
+ ---- 062_struct [FALSE CORRECT] [ Boost = { Wall time: 2.250000s, CPU time: 8.400000s } ] [ Time = { Wall time: 2.250000s, CPU time: 8.390000s } ]
+ ---- 062_struct_fail [INCORRECT] [ Boost = { Wall time: 1.970000s, CPU time: 7.400000s } ] [ Time = { Wall time: 1.960000s, CPU time: 7.380000s } ]
+ ---- 063_foo [CORRECT] [ Boost = { Wall time: 2.130000s, CPU time: 7.800000s } ] [ Time = { Wall time: 2.120000s, CPU time: 7.790000s } ]
+ ---- 063_foo_fail [INCORRECT] [ Boost = { Wall time: 2.090000s, CPU time: 7.340000s } ] [ Time = { Wall time: 2.080000s, CPU time: 7.330000s } ]
+ ---- 064_atomicAdd [NOT SUPPORTED] [ Boost = { Wall time: 0.980000s, CPU time: 3.380000s } ] [ Time = { Wall time: 0.970000s, CPU time: 3.370000s } ]
+ ---- 065_atomicAnd [NOT SUPPORTED] [ Boost = { Wall time: 0.970000s, CPU time: 3.320000s } ] [ Time = { Wall time: 0.960000s, CPU time: 3.310000s } ]
+ ---- 066_atomicCAS [NOT SUPPORTED] [ Boost = { Wall time: 0.940000s, CPU time: 3.120000s } ] [ Time = { Wall time: 0.930000s, CPU time: 3.110000s } ]
+ ---- 067_atomicDec [NOT SUPPORTED] [ Boost = { Wall time: 0.910000s, CPU time: 3.080000s } ] [ Time = { Wall time: 0.910000s, CPU time: 3.060000s } ]
+ ---- 067_atomicDec_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.450000s, CPU time: 0.930000s } ] [ Time = { Wall time: 0.450000s, CPU time: 0.930000s } ]
+ ---- 068_atomicExch [NOT SUPPORTED] [ Boost = { Wall time: 0.890000s, CPU time: 3.000000s } ] [ Time = { Wall time: 0.890000s, CPU time: 2.970000s } ]
+ ---- 069_atomicInc [NOT SUPPORTED] [ Boost = { Wall time: 1.000000s, CPU time: 3.300000s } ] [ Time = { Wall time: 0.990000s, CPU time: 3.300000s } ]
+ ---- 069_atomicInc_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.960000s, CPU time: 3.300000s } ] [ Time = { Wall time: 0.940000s, CPU time: 3.280000s } ]
+ ---- 070_atomicMax [NOT SUPPORTED] [ Boost = { Wall time: 0.910000s, CPU time: 3.140000s } ] [ Time = { Wall time: 0.900000s, CPU time: 3.130000s } ]
+ ---- 071_atomicMin [NOT SUPPORTED] [ Boost = { Wall time: 0.910000s, CPU time: 3.140000s } ] [ Time = { Wall time: 0.910000s, CPU time: 3.130000s } ]
+ ---- 072_atomicOr [NOT SUPPORTED] [ Boost = { Wall time: 0.890000s, CPU time: 3.050000s } ] [ Time = { Wall time: 0.890000s, CPU time: 3.040000s } ]
+ ---- 073_atomicSub [NOT SUPPORTED] [ Boost = { Wall time: 0.880000s, CPU time: 2.940000s } ] [ Time = { Wall time: 0.880000s, CPU time: 2.920000s } ]
+ ---- 074_atomicXor [NOT SUPPORTED] [ Boost = { Wall time: 0.890000s, CPU time: 3.060000s } ] [ Time = { Wall time: 0.870000s, CPU time: 3.030000s } ]
+ ---- 075_reduced_strength_blockwise [CORRECT] [ Boost = { Wall time: 1.890000s, CPU time: 7.160000s } ] [ Time = { Wall time: 1.880000s, CPU time: 7.140000s } ]
+ ---- 076_fail [INCORRECT] [ Boost = { Wall time: 2.020000s, CPU time: 7.710000s } ] [ Time = { Wall time: 2.010000s, CPU time: 7.700000s } ]
+ ---- 076_pass [CORRECT] [ Boost = { Wall time: 2.020000s, CPU time: 7.850000s } ] [ Time = { Wall time: 2.010000s, CPU time: 7.830000s } ]
+ ---- 082_threadfence [NOT SUPPORTED] [ Boost = { Wall time: 0.860000s, CPU time: 2.920000s } ] [ Time = { Wall time: 0.850000s, CPU time: 2.920000s } ]
+ ---- 086_unknown_function [NOT SUPPORTED] [ Boost = { Wall time: 0.480000s, CPU time: 0.990000s } ] [ Time = { Wall time: 0.470000s, CPU time: 0.980000s } ]
+ ---- 087_floatcastrequired [NOT SUPPORTED] [ Boost = { Wall time: 0.430000s, CPU time: 0.910000s } ] [ Time = { Wall time: 0.430000s, CPU time: 0.890000s } ]
+ ---- 087_floatcastrequired_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.440000s, CPU time: 0.900000s } ] [ Time = { Wall time: 0.430000s, CPU time: 0.890000s } ]
+ ---- 088_fail [NOT SUPPORTED] [ Boost = { Wall time: 0.440000s, CPU time: 0.900000s } ] [ Time = { Wall time: 0.430000s, CPU time: 0.890000s } ]
+ ---- 088_pass [NOT SUPPORTED] [ Boost = { Wall time: 0.460000s, CPU time: 0.940000s } ] [ Time = { Wall time: 0.440000s, CPU time: 0.920000s } ]
+ ---- 105_fail [NOT SUPPORTED] [ Boost = { Wall time: 1.620000s, CPU time: 6.040000s } ] [ Time = { Wall time: 1.610000s, CPU time: 6.020000s } ]
+ ---- 105_pass [NOT SUPPORTED] [ Boost = { Wall time: 1.450000s, CPU time: 5.350000s } ] [ Time = { Wall time: 1.440000s, CPU time: 5.350000s } ]
+TIME: [ Boost { Wall time = 136.4s, CPU time = 493.49s } ] [ Time { Wall time = 135.75s, CPU time = 492.36s } ]
+=====================================
+
+
+
+==========================================
+CORRECT: 21
+INCORRECT: 33
+FALSE CORRECT: 5
+FALSE INCORRECT: 4
+NOT SUPPORTED: 91
+TOTAL TIME: [ Boost { Wall time = 2004.31s, CPU time = 710.34s } ] [ Time { Wall time = 1998.78s, CPU time = 708.52s } ]
+==========================================
