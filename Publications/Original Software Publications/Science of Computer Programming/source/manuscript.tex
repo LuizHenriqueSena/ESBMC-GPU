@@ -269,7 +269,7 @@ The present experiments answer two research questions: {\it (i)} How accurate is
 %In addition, ESBMC-GPU had $23$ benchmarks that were not supported. These are related to constant memory access ($3$), the use of CUDA's specific libraries (\textit{e.g., curand.h}) ($7$), and the use of pointers to functions, structures, and char type variables used as kernel call arguments ($13$). 
 
 {\bf Performance.} MPOR resulted in a performance improvement of approximately $80\%$, by decreasing the verification time from $16$ to $3$ hours, while the two-threads analysis further reduced that to $789.6$ sec. Although such techniques have considerably improved the ESBMC-GPU's performance, it still takes longer than the other evaluated tools: GPUVerify ($98.36$ sec), GKLEE ($108.32$ sec), and CIVL ($708.52$ sec). This is due to thread interleavings, which combine symbolic model checking with explicit state-space exploration~\cite{pereira:2016}. %In addition, even though ESBMC-GPU reports the highest verification time, it still presents the highest accuracy, with less than $6$ seconds per benchmark.%, which shows that it is a feasible tool regarding the verification of CUDA-based applications. 
-In addition, ESBMC-GPU still presents the highest accuracy, with less than $6$ seconds per benchmark.
+On the other hand, ESBMC-GPU still presents the highest accuracy, with less than $6$ seconds per benchmark.
 
 \vspace{-2mm}
 
@@ -291,7 +291,7 @@ In addition, ESBMC-GPU still presents the highest accuracy, with less than $6$ s
 
 %\vspace{-1mm}
 
-ESBMC-GPU marks the first application of an SMT-based context-BMC tool that recognizes CUDA directives~\cite{pereira:2016}. Besides, it further simplifies verification models and provides fewer incorrect results, if compared with GKLEE, GPUVerify, and CIVL. Finally, it presents improved ability to detect array out-of-bounds and data race violations. Future work aims to support stream interleaving and implement further techniques to reduce the number of thread interleavings, by taking into account GPU symmetry.
+ESBMC-GPU marks the first application of an SMT-based context-BMC tool that recognizes CUDA directives~\cite{pereira:2016}. Besides, it further simplifies verification models and provides fewer incorrect results, compared with GKLEE, GPUVerify, and CIVL. Finally, it presents improved ability to detect array out-of-bounds and data race violations. Future work aims to support stream interleaving and implement further techniques to reduce the number of thread interleavings, by taking into account GPU symmetry.
 
 %\noindent \textbf{Acknowledgements.} This paper is based on research sponsored by the Institute of Development and Technology (INdT) and by the National Council for Scientific and Technological Development (CNPq) under agreement number $475647/2013-0$.
 
