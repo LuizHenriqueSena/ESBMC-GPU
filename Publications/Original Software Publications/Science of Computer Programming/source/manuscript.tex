@@ -21,17 +21,9 @@
 
 \documentclass[preprint,12pt, a4paper]{elsarticle}
 
-%% Use the option review to obtain double line spacing
-%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
-
-%% For including figures, graphicx.sty has been loaded in
-%% elsarticle.cls. If you prefer to use the old commands
-%% please give \usepackage{epsfig}
 
 %% The amssymb package provides various useful mathematical symbols
 \usepackage{amssymb}
-%% The amsthm package provides extended theorem environments
-%% \usepackage{amsthm}
 
 \usepackage[latin1]{inputenc}
 \usepackage{amsmath}
@@ -77,32 +69,8 @@
 
 \begin{frontmatter}
 
-%% Title, authors and addresses
-
-%% use the tnoteref command within \title for footnotes;
-%% use the tnotetext command for theassociated footnote;
-%% use the fnref command within \author or \address for footnotes;
-%% use the fntext command for theassociated footnote;
-%% use the corref command within \author for corresponding author footnotes;
-%% use the cortext command for theassociated footnote;
-%% use the ead command for the email address,
-%% and the form \ead[url] for the home page:
-%% \title{Title\tnoteref{label1}}
-%% \tnotetext[label1]{}
-%% \author{Name\corref{cor1}\fnref{label2}}
-%% \ead{email address}
-%% \ead[url]{home page}
-%% \fntext[label2]{}
-%% \cortext[cor1]{}
-%% \address{Address\fnref{label3}}
-%% \fntext[label3]{}
 
 \title{ESBMC-GPU \\ A Context-Bounded Model Checking Tool \\ to Verify CUDA Programs}
-
-%% use optional labels to link authors explicitly to addresses:
-%% \author[label1,label2]{}
-%% \address[label1]{}
-%% \address[label2]{}
 
 \author{Felipe~R.~Monteiro$^{1}$, Erickson~H.~da~S.~Alves$^{1}$, Isabela~S.~Silva$^{1}$,\\Hussama~A.~Ismail$^{1}$, Lucas~C.~Cordeiro$^{1,2}$, and Eddie~B.~de~Lima~Filho$^{1,3}$}
 
@@ -115,13 +83,7 @@ The Compute Unified Device Architecture (CUDA) is a programming model used for e
 \end{abstract}
 
 \begin{keyword}
-%% keywords here, in the form: keyword \sep keyword
 GPU verification \sep formal verification \sep model checking \sep CUDA
-
-%% PACS codes here, in the form: \PACS code \sep code
-
-%% MSC codes here, in the form: \MSC code \sep code
-%% or \MSC[2008] code \sep code (2000 is the default)
 
 \end{keyword}
 
@@ -140,7 +102,7 @@ The Compute Unified Device Architecture (CUDA) is a development framework that m
 
 In order to address the mentioned issues, an extension to the Efficient SMT-Based Context-Bounded Model Checker (ESBMC)~\cite{cordeiro:2012} was developed, named as ESBMC-GPU~\cite{Pereira15,Pereira16,pereira:2016}, with the goal of verifying CUDA-based programs (available online at \texttt{http://esbmc.org/gpu}). ESBMC-GPU consists of an extension for parsing CUDA source code ({\it i.e.}, a front-end to ESBMC) and a CUDA operational model (COM), which is an abstract representation of the standard CUDA libraries ({\it i.e.}, the native API) that conservatively approximates their semantics. 
 
-A distinct feature of ESBMC-GPU, when compared with other approaches \cite{betts:2012,Li:2010,Li:2012,civl:2015}, is the use of Bounded Model Checking (BMC)~\cite{Biere:2009} allied to Satisfiability Modulo Theories (SMT)~\cite{Barrett:2009}, with explicit state-space exploration~\cite{cordeiro:2011,cordeiro:2012}. In summary, concurrency problems are tackled, up to an unwinding bound, while each interleaving itself is symbolically handled; however, even with BMC, space-state exploration may become a very time-consuming task, which is alleviated through state hashing and Monotonic Partial Order Reduction (MPOR)~\cite{KahlonWG09}. As a consequence, redundant interleavings are eliminated, without ignoring a program's behavior.
+A distinct feature of ESBMC-GPU, when compared with other approaches \cite{betts:2012,Li:2010,Li:2012,civl:2015}, is the use of Bounded Model Checking (BMC)~\cite{Biere:2009} allied to Satisfiability Modulo Theories (SMT)~\cite{Barrett:2009}, with explicit state-space exploration~\cite{cordeiro:2011,cordeiro:2012}. In summary, concurrency problems are tackled, up to an unwinding bound, while each interleaving itself is symbolically handled; however, even with BMC, state-space exploration may become a very time-consuming task, which is alleviated through state hashing and Monotonic Partial Order Reduction (MPOR)~\cite{KahlonWG09}. As a consequence, redundant interleavings are eliminated, without ignoring a program's behavior.
 
 Finally, existing GPU verifiers often ignore some aspects related to memory leak, data transfer, and overflow, which are normally present in CUDA programs. The proposed approach, in turn, explicitly addresses them, through an accurate checking procedure, which even considers data exchange between main program and kernel. Obviously, it results in higher verification times, but more errors can then be identified and later corrected, in another development cycle.
 
