@@ -148,7 +148,7 @@ The authors present an extension of the ESBMC tool, to verify CUDA GPU kernels b
 {\bf (1)} The present submission provides an ok overview of the capabilities of the tool, in my opinion, but the authors never really address the details to fully understand what the tool can and cannot do. For instance, when discussing the experimental evaluation, it is not explained what the source of the bugs is in the various benchmarks.
 
 \begin{quote}
-\textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: haven't we explained that in {\bf Limitations} subsection on page 6?}}
+\textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: haven't we explained that in {\bf Limitations} subsection on page 6?} The reviewer wants to know more details about the type of bugs that we have found in the benchmarks. May I ask you to take a look at our journal paper? I think we describe the type of bugs there. }
 \end{quote}
 
   \begin{itemize}
@@ -173,7 +173,7 @@ The authors present an extension of the ESBMC tool, to verify CUDA GPU kernels b
   \item Can ESBMC-GPU handle variables in different types of memory? (Shared, global, thread registers?), and inter-warp communication, for instance?
   
   \begin{quote}
-  \textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: Shall we reference your work about verifying multithread ANSI-C programs?}}
+  \textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: Shall we reference your work about verifying multithread ANSI-C programs? Yes, please. Also reference our journal paper about esbmc-gpu.}}
   \end{quote}
   
   \item In that respect, what does COM cover, and what remains to be added?
@@ -185,7 +185,7 @@ The authors present an extension of the ESBMC tool, to verify CUDA GPU kernels b
   \item Is the memory model for the different types of memory complete?
   
   \begin{quote}
-  \textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: I didn't get it. Did you?}}
+  \textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: I didn't get it. Did you? Can you cite our TACAS 2014 paper? I suggest you to read that paper which briefly explains our memory model. Then you can properly reply to the reviewer and cite that paper.}}
   \end{quote}
   
   \end{itemize}
@@ -199,13 +199,13 @@ The authors present an extension of the ESBMC tool, to verify CUDA GPU kernels b
 {\bf (3)} At some point, the authors mention in passing that Microsoft C++ AMP projects have been used for the evaluation. Does this mean that this language is also supported, or are the benchmarks translated?
 
 \begin{quote}
-\textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: does he mean C++? Shall we reference the paper from ECBS 2013 about ESBMC++?}}
+\textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: does he mean C++? Shall we reference the paper from ECBS 2013 about ESBMC++? Yes, please. Mention that we support C++ and cite our ECBS 2013 paper.}}
 \end{quote}
 
 {\bf (4)} Concluding, I would like to see an overall more detailed discussion of the capabilities of the tool.
 
 \begin{quote}
-\textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: don't we explain that on Functionalities section? Any ideia what else we could add?}}
+\textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: don't we explain that on Functionalities section? Any ideia what else we could add? The problem is that we have page limit, right? Can you please mail the editor and check if we can exceed the page limit to properly handle the reviewer comments?}}
 \end{quote}
 
 {\bf (5)} Detailed comments:
@@ -272,7 +272,7 @@ The authors present an extension of the ESBMC tool, to verify CUDA GPU kernels b
   \item Figure 2: between lines 17 and 18, the contents of {\tt dev\_a} should be copied to {\tt a} with a {\tt cudaMemcpy}, otherwise the subsequent check is quite useless;
   
     \begin{quote}
-    \textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: To be honest, I didn't get it. Do you think this is correct? Could professor Ricardo Pereira help us answer this question appropriately?}}
+    \textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: To be honest, I didn't get it. Do you think this is correct? Could professor Ricardo Pereira help us answer this question appropriately? Can you please check this with Isabela? Isabela had worked quite hard on the experimental evaluation and examples of our papers.}}
     \end{quote}
 
   \end{itemize}
@@ -299,13 +299,13 @@ The authors present an extension of the ESBMC tool, to verify CUDA GPU kernels b
   \item stream interleaving: what is this?
   
     \begin{quote}
-    \textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: which reference would you suggest to use here?}}
+    \textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: which reference would you suggest to use here? Add a reference to some book on GPU. You can also briefly explain the term and then cite the reference.}}
     \end{quote}
 
   \item  to reduce the number of thread interleavings: in what respect? Not reducing the number of threads, right? You already use the 2-thread simplification;
   
     \begin{quote}
-    \textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: what would be the next step to reduce the number of thread interleavings? Improve MPOR?}}
+    \textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: what would be the next step to reduce the number of thread interleavings? Improve MPOR? You can mention that we intend to use Abstract Interpretation to further reduce the model and the number of threads. Then you can cite our TACAS 2017 paper}}
     \end{quote}
 
   \end{itemize}
