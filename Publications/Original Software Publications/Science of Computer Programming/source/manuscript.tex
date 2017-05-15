@@ -295,7 +295,7 @@ The present experiments answer two research questions: {\it (i)} How accurate is
 
 %\vspace{-1mm}
 
-ESBMC-GPU marks the first application of an SMT-based context-BMC tool that recognizes CUDA directives~\cite{pereira:2016}. \textcolor{blue}{Besides, it also applies MPOR, two-thread analysis, and state hashing in order to further simplify verification models and provides fewer incorrect results, compared with GKLEE, GPUVerify, and CIVL.} Finally, it presents improved ability to detect array out-of-bounds and data race violations. Future work aims to support \textcolor{blue}{CUDA (parallel) streams and events~\cite{cuda:2012}} and implement further techniques to reduce the number of thread interleavings, by taking into account GPU symmetry.
+ESBMC-GPU marks the first application of an SMT-based context-BMC tool that recognizes CUDA directives~\cite{pereira:2016}. \textcolor{blue}{Besides, it also applies MPOR, two-thread analysis, and state hashing in order to further simplify verification models and provides fewer incorrect results, compared with GKLEE, GPUVerify, and CIVL.} Finally, it presents improved ability to detect array out-of-bounds and data race violations. Future work aims to support \textcolor{blue}{CUDA (parallel) streams and events~\cite{cuda:2012}} and implement further techniques \textcolor{blue}{(e.g., Abstract Interpretation~\cite{Rocha2017})} to reduce the number of thread interleavings, by taking into account GPU symmetry.
 
 %\noindent \textbf{Acknowledgements.} This paper is based on research sponsored by the Institute of Development and Technology (INdT) and by the National Council for Scientific and Technological Development (CNPq) under agreement number $475647/2013-0$.
 
@@ -343,7 +343,7 @@ Pereira, P., Albuquerque, H., Marques, H., Silva, I., Carvalho, C., Santos, V., 
 \bibitem{pereira:2016}
 Pereira, P., Albuquerque, H., Silva, I., Marques, H., Monteiro, F., Ferreira, R., and Cordeiro, L.
 \newblock {\em{SMT-Based Context-Bounded Model Checking for CUDA Programs}}.
-\newblock Concurrency Computat.: Pract. Exper. 2016 (to appear).
+\newblock Concurrency Computat.: Pract. Exper. 2016.
 
 \bibitem{Li:2010}
 Li, G. and Gopalakrishnan, G.
@@ -446,6 +446,12 @@ NVIDIA.
 Microsoft Corporation.
 \newblock {\em {C++ AMP sample projects for download (MSDN blog)}}. 
 \newblock {\tt blogs.msdn.com/b/nativeconcurrency/archive/2012/01/30/c-amp-} {\tt sample-projects-for-download.aspx}, 2012.
+
+\bibitem{Rocha2017}
+\textcolor{blue}{Rocha, W., Rocha, H., Ismail, H., Cordeiro, L., and Fischer, B.}
+\newblock {\em{\textcolor{blue}{DepthK: A k-Induction Verifier Based on Invariant Inference for C Programs}}}.
+\newblock \textcolor{blue}{Tools and Algorithms for the Construction and Analysis of Systems: 23rd International Conference, TACAS 2017, Held as Part of the European Joint Conferences on Theory and Practice of Software, ETAPS 2017, Uppsala, Sweden.}
+\newblock \textcolor{blue}{{Springer Berlin Heidelberg}, 360--364, 2017.}
 
 \end{thebibliography}
 
