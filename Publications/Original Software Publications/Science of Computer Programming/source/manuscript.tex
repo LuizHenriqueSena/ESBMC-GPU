@@ -96,7 +96,7 @@ GPU verification \sep formal verification \sep model checking \sep CUDA
 \label{sec:intro}
 %=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-\vspace{-1mm}
+%\vspace{-1mm}
 
 The Compute Unified Device Architecture (CUDA) is a development framework that makes use of the architecture and processing power of Graphics Processing Units (GPUs)~\cite{cuda:2012}. Indeed, CUDA is also an Application Programming Interface (API), through which a GPU's parallelization scheme and tools can be accessed, with the goal of executing kernels. Nonetheless, source code is still written by human programmers, which may result in arithmetic overflow, division by zero, and other violation types. In addition, given that CUDA allows parallelization, problems related to the latter can also occur, due to thread scheduling~\cite{betts:2012}.
 
@@ -115,18 +115,18 @@ Finally, existing GPU verifiers often ignore some aspects related to memory leak
 
 %\textbf{Existing GPU Verifiers}. GPUVerify~\cite{betts:2012} is based on Synchronous Delayed Visibility, which focus on detecting data race and barrier divergence, while reducing kernel verification procedures to the analysis of sequential programs. Symbolic Executor with Static Analysis (SESA)~\cite{sesa:2014} and GPU + KLEE (GKLEE)~\cite{Li:2012} are concrete plus symbolic (\textit{concolic}) execution tools. Initially, GKLEE modeled every original thread, which was later improved by taking into account symmetry, and it considers both kernel and main function, while checking barrier synchronization and data race, among others. SESA combines equivalent flows, which results in great performance improvement, focus on data race detection, and does not verify the main function. Prover of User GPU Programs (PUG)~\cite{Li:2010} is based on SMT solvers and applies symbolic static analysis to each kernel, but requires user annotations. CIVL~\cite{civl:2015} generates an abstract syntax tree and supports analysis and transformations. Besides, it also verifies concurrent programs with partial order reduction, which makes it very similar to the solution proposed here. Given that its support to CUDA libraries is still under development, CIVL is an interesting approach for checking simple CUDA programs. \textcolor{red}{$<$---- poderiamos deletar esse paragrafo?}
 
-\vspace{-3mm}
+%\vspace{-3mm}
 
 %=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \section{Architecture and Implementation}
 \label{sec:arch}
 %=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-\vspace{-1mm}
+%\vspace{-1mm}
 
 \textcolor{blue}{ESBMC-GPU is built on top of ESBMC}, which is an open source context-bounded model checker based on SMT solvers for ANSI-C/C$++$ programs~\cite{cordeiro:2011,cordeiro:2012}, and adds four essential models, as described below.
 
-\vspace{-2mm}
+%\vspace{-2mm}
 
 \begin{figure}[htb]
   \centering
@@ -135,7 +135,7 @@ Finally, existing GPU verifiers often ignore some aspects related to memory leak
   \label{figure:arch}
 \end{figure}
 
-\vspace{-2mm}
+%\vspace{-2mm}
 
 \noindent \textbf{1. CUDA Operational Model.} An operational model for CUDA libraries that provides support to CUDA functionalities, in conjunction with ESBMC, as shown in Fig.~\ref{figure:arch}. Such an approach, which was previously attempted in the verification of C++ programs~\cite{ramalho:2013, monteiro:2015, garcia:2016, monteiro:2017}, \textcolor{blue}{consists of} an abstract representation that reliably approximates the CUDA library's semantics; however, COM incorporates pre- and post-conditions into verification processes, which enables ESBMC-GPU to verify specific properties (cf. Sec.~\ref{sec:features}). Indeed, COM allows the necessary control for performing code analysis, where both CUDA operation and knowledge for model checking its properties are available.
 
@@ -146,29 +146,29 @@ Finally, existing GPU verifiers often ignore some aspects related to memory leak
 %  \label{figure:om}
 %\end{figure}
 
-ESBMC was designed to handle multi-threaded software, through the use of an API called Portable Operating System Interface (POSIX -- ISO/IEC 9945)~\cite{posix:2008}. Thus, ESBMC-GPU applies a combination of processing methods used by Central Processing Units (CPUs) and the POSIX library, where thread instructions can interleave to create execution paths. Particularly, COM simulates the behavior of kernel calls using pthread functions ({\it e.g.}, {\tt pthread\_create}) and combines that with ESBMC, in order to check data race and specific C/C++ programming language failures ({\it e.g.}, array out-of-bounds and pointer safety).
+ESBMC was designed to handle multi-threaded software, through the use of an API called Portable Operating System Interface (POSIX -- ISO/IEC 9945)~\cite{posix:2008}. Thus, ESBMC-GPU applies a combination of processing methods used by Central Processing Units (CPUs) and the POSIX library, where thread instructions can interleave to create execution paths. Particularly, COM simulates the behavior of kernel calls using pthread functions ({\it e.g.}, {\tt pthread\_create}) and combines that with ESBMC, in order to check data race and specific C/C++ programming language failures ({\it e.g.}, array out-of-bounds and pointer safety).\\
 %Additionally, ESBMC-GPU employs symbolic state hashing~\cite{Morse11}, monotonic partial order reduction (MPOR)~\cite{morse:2015}, and the two-thread analysis~\cite{pereira:2016}, in order to prune the state space exploration.
 
-\noindent \textbf{2. Two-threads Analysis.} Similarly to GPUVerify~\cite{betts:2012} and PUG~\cite{Li:2010}, ESBMC-GPU also reduces the number of threads (to only two elements), during the verification of CUDA programs, by considering a NVIDIA Fermi GPU architecture, in order to improve verification time and avoid the state-space explosion problem. In CUDA programs, whilst threads execute the same parametrized kernel, only two of them are necessary for conflict check. Thus, such an analysis ensures that errors ({\it e.g.}, data races) detected between two threads, in a given subgroup and due to unsynchronized accesses to shared variables, are enough to justify a property violation~\cite{pereira:2016}.
+\noindent \textbf{2. Two-threads Analysis.} Similarly to GPUVerify~\cite{betts:2012} and PUG~\cite{Li:2010}, ESBMC-GPU also reduces the number of threads (to only two elements), during the verification of CUDA programs, by considering a NVIDIA Fermi GPU architecture, in order to improve verification time and avoid the state-space explosion problem. In CUDA programs, whilst threads execute the same parametrized kernel, only two of them are necessary for conflict check. Thus, such an analysis ensures that errors ({\it e.g.}, data races) detected between two threads, in a given subgroup and due to unsynchronized accesses to shared variables, are enough to justify a property violation~\cite{pereira:2016}.\\
 
 %\noindent \textbf{State Hashing.} ESBMC-GPU applies state hashing to further eliminate redundant interleavings and reduce state space, based on SHA256 hashes.\\%, due to the low the likelihood regarding collisions. \\
 %
 
-\noindent \textbf{3. State Hashing.} ESBMC-GPU applies state hashing to further eliminate redundant interleavings and also \textcolor{blue}{reduce the state space}, based on SHA256 hashes \cite{FIPS:2002}. In particular, its symbolic state hashing approach computes a summary for a particular state that has already been explored and then indexes the resulting set, in order to reduce the generation of redundant states. Given any state computed during the symbolic execution of a specific CUDA kernel, ESBMC-GPU simply summarizes it and efficiently determines whether it has been explored before or not, along a different computation path. When this behavior is confirmed, which happens during the ESBMC-GPU's symbolic-execution procedure, then the current computation path does not need to be further explored in the associated reachability tree (RT). This way, if ESBMC-GPU reaches such a state, {\it i.e.}, where a context switch can be taken ({\it e.g.}, before a global variable or synchronization primitive) and all shared/local variables and program counters are similar to another explored node, then ESBMC-GPU just considers that an identical node to be further explored, since reachability subtrees associated to them are also similar~\cite{pereira:2016,morse:2015}.% \textcolor{red}{similares? entao, qual eh o impacto de se verificar apenas um? eh bom colocar uma ref aqui e melhorar o texto} \textcolor{blue}{professor Lucas, devemos citar aqui a tese do Jeremy?} \textcolor{green}{Felipe podes citar o nosso journal do CPE e a tese do Jeremy}. 
+\noindent \textbf{3. State Hashing.} ESBMC-GPU applies state hashing to further eliminate redundant interleavings and also \textcolor{blue}{reduce the state space}, based on SHA256 hashes \cite{FIPS:2002}. In particular, its symbolic state hashing approach computes a summary for a particular state that has already been explored and then indexes the resulting set, in order to reduce the generation of redundant states. Given any state computed during the symbolic execution of a specific CUDA kernel, ESBMC-GPU simply summarizes it and efficiently determines whether it has been explored before or not, along a different computation path. When this behavior is confirmed, which happens during the ESBMC-GPU's symbolic-execution procedure, then the current computation path does not need to be further explored in the associated reachability tree (RT). This way, if ESBMC-GPU reaches such a state, {\it i.e.}, where a context switch can be taken ({\it e.g.}, before a global variable or synchronization primitive) and all shared/local variables and program counters are similar to another explored node, then ESBMC-GPU just considers that an identical node to be further explored, since reachability subtrees associated to them are also similar~\cite{pereira:2016,morse:2015}.\\% \textcolor{red}{similares? entao, qual eh o impacto de se verificar apenas um? eh bom colocar uma ref aqui e melhorar o texto} \textcolor{blue}{professor Lucas, devemos citar aqui a tese do Jeremy?} \textcolor{green}{Felipe podes citar o nosso journal do CPE e a tese do Jeremy}. 
 
 
 \noindent \textbf{4. Monotonic Partial Order Reduction.} MPOR is used to reduce the number of thread interleavings, by classifying transitions inside a program as dependent or independent. As a consequence, it is possible to determine whether interleaving pairs always lead to the same state and then remove duplicates in a reachability tree, without ignoring any program's behavior~\cite{morse:2015}.
 
 %In addition to both techniques, 
 
-\vspace{-4mm}
+%\vspace{-4mm}
 
 %=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \section{Functionalities}
 \label{sec:features}
 %=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-\vspace{-1mm}
+%\vspace{-1mm}
 
 Through the integration of COM into ESBMC ({\it i.e.}, ESBMC-GPU), one is able to analyze CUDA programs and verify the following properties: data-race conditions, in order to detect if multiple threads perform unsynchronized access \textcolor{blue}{to the same memory locations}; pointer safety, {\it i.e.}, whether {\it (i)} a pointer offset does not exceed object bounds and {\it (ii)} a pointer is neither {\tt NULL} nor invalid; array bounds, in order to ensure that array indices are within known bounds; arithmetic under- and overflow, which happens when a sum or product exceeds the memory limits that a variable can handle; division by zero, which takes place when denominators, in arithmetic expressions, lead to a division by zero; and user-specified assertions, {\it i.e.}, all assertions specified by users, which is essential to a thorough verification process.%, as some specific possible violations must be explicitly pointed out.
 
@@ -176,24 +176,26 @@ In order to check the aforementioned properties, ESBMC-GPU explicitly explores t
 
 %\textcolor{red}{eu nao sei como a disponibilidade de espaco estah, mas seria bom aqui um fechamento de como BMC checa tudo...} \textcolor{blue}{acredito que nao teremos espaco para isso} \textcolor{green}{Felipe, podes referenciar o nosso journal do CPE informando que la explicamos como o BMC checa tudo com mais detalhes.}
 
-\vspace{-4mm}
+%\vspace{-4mm}
 
 %=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \section{Illustrative Example}
 \label{subsec:usage}
 %=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-\vspace{-1mm}
+%\vspace{-1mm}
 
-In this part, ESBMC-GPU usage is demonstrated, by using the CUDA program shown in Fig.~\ref{fig:illustrative-example}. First of all, users must replace the default kernel call (line $16$) by an intrinsic function of ESBMC-GPU (line $17$). Then, the resulting CUDA program can be passed to the command-line version of ESBMC-GPU, as follows: \texttt{esbmc-gpu} \emph{\tt <file>.cu} {\tt --unwind <$k$>}  {\tt --context-switch <$c$>} {\tt --state-hashing} {\tt -I <path-to-CUDA-OM>},  where {\tt $<$file$>$.cu} is the CUDA program, {\tt <$k$>} is the maximum loop unrolling, {\tt <$c$>} is a context-switch bound, {\tt --state-hashing} reduces redundant interleavings, and {\tt $<$path-to-} {\tt CUDA-OM$>$} is the location of the COM library.
+In this part, ESBMC-GPU usage is demonstrated, by using the CUDA program shown in Fig.~\ref{fig:illustrative-example}. First of all, users must replace the default kernel call (line $16$) by an intrinsic function of ESBMC-GPU (line $17$). Then, the resulting CUDA program can be passed to the command-line version of ESBMC-GPU, as follows: %\texttt{esbmc-gpu} \emph{\tt <file>.cu} {\tt --unwind <$k$>}  {\tt --context-switch <$c$>} {\tt --state-hashing} {\tt -I <path-to-CUDA-OM>},  
 
-%\begin{center}
+\begin{center}
 %\vspace{-2 mm}
-%\noindent \texttt{esbmc-gpu} \emph{\tt <file>.cu} {\tt --unwind <$k$>}  {\tt --context-switch <$c$>}
+\noindent \texttt{esbmc-gpu} \emph{\tt <file>.cu} {\tt --unwind <$k$>}  {\tt --context-switch <$c$>}
 
-%\noindent {\tt --state-hashing} {\tt -I <path-to-CUDA-OM>},
+\noindent {\tt --state-hashing} {\tt -I <path-to-CUDA-OM>},
 %\vspace{-2 mm}
-%\end{center}
+\end{center}
+
+where {\tt $<$file$>$.cu} is the CUDA program, {\tt <$k$>} is the maximum loop unrolling, {\tt <$c$>} is a context-switch bound, {\tt --state-hashing} reduces redundant interleavings, and {\tt $<$path-to-} {\tt CUDA-OM$>$} is the location of the COM library.
 
 %\vspace{-0.1cm}
 
@@ -204,7 +206,7 @@ In this part, ESBMC-GPU usage is demonstrated, by using the CUDA program shown i
 
 In the mentioned example, ESBMC-GPU detects an array out-of-bounds violation. Indeed, this CUDA-based program retrieves a memory region that has not been previously allocated, {\it i.e.}, when {\tt threadIdx.x = 1}, the program tries to access $a[2]$. Importantly, the {\tt cudaMalloc()} function's operational model has a precondition that checks if the memory size to be allocated is greater than zero. In addition, an assertion checks if the result matches to the expected postcondition (line $19$). The verification of this program through ESBMC-GPU produces $54$ successful and $3$ failed interleavings. For instance, one possible failed interleaving is represented by the threads executions $t_0 : a[1] = 0$; $t_1 : a[2] = 1$, where $a[2] = 1$ represents an incorrect access to the array index $a$. It is worth noticing that CIVL, ESBMC-GPU, and GKLEE are also able to detect this array out-of-bounds violation, but GPUVerify fails, as it reports a true incorrect result (missed bug).
 
-\vspace{-3mm}
+%\vspace{-3mm}
 
 \begin{figure} [htb]
 \centering
@@ -242,14 +244,14 @@ int main(){
 \label{fig:illustrative-example}
 \end{figure}
 
-\vspace{-7mm}
+%\vspace{-7mm}
 
 %=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \section{Experimental Evaluation}
 \label{sec:effectiveness}
 %=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-\vspace{-1mm}
+%\vspace{-1mm}
 
 In order to evaluate ESBMC-GPU's precision and performance, benchmarks\footnote{A detailed description of all benchmarks is available at {\tt http://esbmc.org/gpu/}} were extracted from the available literature ({\it i.e.}, NVIDIA GPU Computing SDK v$2$.$0$~\cite{toolkit:2015} and Microsoft C$++$ AMP Sample Projects~\cite{microsoft:2012}), which covers basic functions commonly used by real CUDA applications. 
 %The chosen benchmark suite comprises $20$ CUDA kernels from NVIDIA GPU Computing SDK v$2$.$0$, $20$ CUDA kernels from Microsoft C$++$ AMP Sample Projects%~\cite{microsoft:2012}
@@ -266,16 +268,7 @@ The present experiments answer two research questions: {\it (i)} How accurate is
 
 %\end{enumerate}
 
- In order to answer both questions, all benchmarks were verified with $4$ GPU verifiers (ESBMC-GPU $v2.0$, GKLEE $v2012$, GPUVerify $v1811$, and CIVL $v1.7.1$), on an otherwise idle Intel Core i$7$-$4790$ CPU $3$.$60$ GHz, with $16$ GB of RAM, running Ubuntu 14.04 OS. Importantly, all presented execution times are actually CPU times, {\it i.e.}, only the elapsed time periods spent in the allocated CPUs, which was measured with the {\tt times} system call (POSIX system). An overview of the experimental results is shown in Fig.~\ref{figure:experimental}, where {\it True} represents bug-free benchmarks, {\it False} represents buggy benchmarks, {\it Not supported} represents benchmarks that could not be verified, {\it Correct} represents the percentage of benchmarks correctly verified, and {\it Incorrect} represents the percentage of benchmarks incorrectly verified ({\it i.e.}, a verification tool reports an unexpected result). As one may notice, the present experimental results show that ESBMC-GPU reached a successful verification rate of approximately $85\%$, while GKLEE, GPUVerify, and CIVL reported $72\%$, $50\%$, and $35\%$, respectively\footnote{All experimental results are available at {\tt http://esbmc.org/gpu/}}. More precisely, ESBMC-GPU supports the verification of benchmarks related to array bounds ($3$\%), assertive statements ($5$\%), data race ($11$\%), {\tt NULL} pointers ($3$\%), and other specific CUDA functionalities ($63$\%). %\textcolor{red}{e os outros? quais sao as vantagens? esse paragrafo ficou incompleto} \textcolor{blue}{estamos focando apenas nos aspectos do ESBMC porque nao temos espaco para discutir sobre os demais, isso estara na pagina online} \textcolor{green}{Concordo em colocar o texto explicativo na pagina online e referenciar.}
-
-{\bf Limitations.} ESBMC-GPU was unable to correctly verify $24$ benchmarks, which are related to constant memory access ($2$\%), CUDA's specific libraries ($4.5$\%), and the use of pointers to functions, structures, and {\tt char} type variables, when passed as kernel call arguments ($4.5$\%). In addition, it only reported $3$\% of incorrect true and $1$\% of incorrect false results.
-
-%In addition, ESBMC-GPU had $23$ benchmarks that were not supported. These are related to constant memory access ($3$), the use of CUDA's specific libraries (\textit{e.g., curand.h}) ($7$), and the use of pointers to functions, structures, and char type variables used as kernel call arguments ($13$). 
-
-{\bf Performance.} MPOR resulted in a performance improvement of approximately $80\%$, by decreasing the verification time from $16$ to $3$ hours, while the two-threads analysis further reduced that to $789.6$ sec. Although such techniques have considerably improved the ESBMC-GPU's performance, it still takes longer than the other evaluated tools: GPUVerify ($98.36$ sec), GKLEE ($108.32$ sec), and CIVL ($708.52$ sec). \textcolor{blue}{On the one hand}, this is due to thread interleavings, which combine symbolic model checking with explicit state-space exploration~\cite{pereira:2016}. %In addition, even though ESBMC-GPU reports the highest verification time, it still presents the highest accuracy, with less than $6$ seconds per benchmark.%, which shows that it is a feasible tool regarding the verification of CUDA-based applications. 
-\textcolor{blue}{On the other hand}, ESBMC-GPU still presents the highest accuracy, with less than $6$ seconds per benchmark.
-
-\vspace{-2mm}
+ In order to answer both questions, all benchmarks were verified with $4$ GPU verifiers (ESBMC-GPU $v2.0$, GKLEE $v2012$, GPUVerify $v1811$, and CIVL $v1.7.1$), on an otherwise idle Intel Core i$7$-$4790$ CPU $3$.$60$ GHz, with $16$ GB of RAM, running Ubuntu 14.04 OS. Importantly, all presented execution times are actually CPU times, {\it i.e.}, only the elapsed time periods spent in the allocated CPUs, which was measured with the {\tt times} system call (POSIX system). An overview of the experimental results is shown in Fig.~\ref{figure:experimental}, where {\it True} represents bug-free benchmarks, {\it False} represents buggy benchmarks, {\it Not supported} represents benchmarks that could not be verified, {\it Correct} represents the percentage of benchmarks correctly verified, and {\it Incorrect} represents the percentage of benchmarks incorrectly verified ({\it i.e.}, a verification tool reports an unexpected result). As one may notice, the present experimental results show that ESBMC-GPU reached a successful verification rate of approximately $85\%$, while GKLEE, GPUVerify, and CIVL reported $72\%$, $50\%$, and $35\%$, respectively\footnote{All experimental results are available at {\tt http://esbmc.org/gpu/}}. More precisely, ESBMC-GPU supports the verification of benchmarks related to array bounds ($3$\%), assertive statements ($5$\%), data race ($11$\%), {\tt NULL} pointers ($3$\%), and other specific CUDA functionalities ($63$\%).\\ %\textcolor{red}{e os outros? quais sao as vantagens? esse paragrafo ficou incompleto} \textcolor{blue}{estamos focando apenas nos aspectos do ESBMC porque nao temos espaco para discutir sobre os demais, isso estara na pagina online} \textcolor{green}{Concordo em colocar o texto explicativo na pagina online e referenciar.}
 
 \begin{figure}[htb]
   \centering
@@ -284,7 +277,10 @@ The present experiments answer two research questions: {\it (i)} How accurate is
   \label{figure:experimental}
 \end{figure}
 
-\vspace{-8mm}
+{\bf Limitations.} ESBMC-GPU was unable to correctly verify $24$ benchmarks, which are related to constant memory access ($2$\%), CUDA's specific libraries ($4.5$\%), and the use of pointers to functions, structures, and {\tt char} type variables, when passed as kernel call arguments ($4.5$\%). In addition, it only reported $3$\% of incorrect true and $1$\% of incorrect false results.\\
+
+{\bf Performance.} MPOR resulted in a performance improvement of approximately $80\%$, by decreasing the verification time from $16$ to $3$ hours, while the two-threads analysis further reduced that to $789.6$ sec. Although such techniques have considerably improved the ESBMC-GPU's performance, it still takes longer than the other evaluated tools: GPUVerify ($98.36$ sec), GKLEE ($108.32$ sec), and CIVL ($708.52$ sec). \textcolor{blue}{On the one hand}, this is due to thread interleavings, which combine symbolic model checking with explicit state-space exploration~\cite{pereira:2016}. %In addition, even though ESBMC-GPU reports the highest verification time, it still presents the highest accuracy, with less than $6$ seconds per benchmark.%, which shows that it is a feasible tool regarding the verification of CUDA-based applications. 
+\textcolor{blue}{On the other hand}, ESBMC-GPU still presents the highest accuracy, with less than $6$ seconds per benchmark.
 
 %\noindent \textbf{Availability of Data and Tools.} The performed experiments are based on a set of publicly available benchmarks. All benchmarks, tools, and results, associated with the current evaluation, are available on {\tt http://esbmc-gpu.org/}.
 
@@ -292,8 +288,6 @@ The present experiments answer two research questions: {\it (i)} How accurate is
 \section{Conclusions and Future Work}
 \label{sec:conc}
 %=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-%\vspace{-1mm}
 
 ESBMC-GPU marks the first application of an SMT-based context-BMC tool that recognizes CUDA directives~\cite{pereira:2016}. \textcolor{blue}{Besides, it also applies MPOR, two-thread analysis, and state hashing in order to further simplify verification models and provides fewer incorrect results, compared with GKLEE, GPUVerify, and CIVL.} Finally, it presents improved ability to detect array out-of-bounds and data race violations. Future work aims to support \textcolor{blue}{CUDA (parallel) streams and events~\cite{cuda:2012}} and implement further techniques \textcolor{blue}{(e.g., Abstract Interpretation~\cite{Rocha2017})} to reduce the number of thread interleavings, by taking into account GPU symmetry.
 
