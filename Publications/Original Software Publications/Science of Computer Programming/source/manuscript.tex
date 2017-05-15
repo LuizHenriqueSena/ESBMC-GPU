@@ -147,9 +147,43 @@ ESBMC was designed to handle multi-threaded software, through the use of an API 
 \label{sec:features}
 %=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-Through the integration of COM into ESBMC ({\it i.e.}, ESBMC-GPU), one is able to analyze CUDA programs and verify the following properties: data-race conditions, in order to detect if multiple threads perform unsynchronized access \textcolor{blue}{to the same memory locations}; pointer safety, {\it i.e.}, whether {\it (i)} a pointer offset does not exceed object bounds and {\it (ii)} a pointer is neither {\tt NULL} nor invalid; array bounds, in order to ensure that array indices are within known bounds; arithmetic under- and overflow, which happens when a sum or product exceeds the memory limits that a variable can handle; division by zero, which takes place when denominators, in arithmetic expressions, lead to a division by zero; and user-specified assertions, {\it i.e.}, all assertions specified by users, which is essential to a thorough verification process.%, as some specific possible violations must be explicitly pointed out.
+%Through the integration of COM into ESBMC ({\it i.e.}, ESBMC-GPU), one is able to analyze CUDA programs and verify the following properties: data-race conditions, in order to detect if multiple threads perform unsynchronized access \textcolor{blue}{to the same memory locations}; pointer safety, {\it i.e.}, whether {\it (i)} a pointer offset does not exceed object bounds and {\it (ii)} a pointer is neither {\tt NULL} nor invalid; array bounds, in order to ensure that array indices are within known bounds; arithmetic under- and overflow, which happens when a sum or product exceeds the memory limits that a variable can handle; division by zero, which takes place when denominators, in arithmetic expressions, lead to a division by zero; and user-specified assertions, {\it i.e.}, all assertions specified by users, which is essential to a thorough verification process.%, as some specific possible violations must be explicitly pointed out.
 
-In order to check the aforementioned properties, ESBMC-GPU explicitly explores the possible interleavings (up to the given context bound) and calls the single-threaded BMC procedure on each one, whenever it reaches an RT leaf node. Then, the mentioned procedure will stop if it finds a bug or when all possible RT interleavings \textcolor{blue}{have been systematically explored}~\cite{pereira:2016}.
+%In order to check the aforementioned properties, ESBMC-GPU explicitly explores the possible interleavings (up to the given context bound) and calls the single-threaded BMC procedure on each one, whenever it reaches an RT leaf node. Then, the mentioned procedure will stop if it finds a bug or when all possible RT interleavings \textcolor{blue}{have been systematically explored}~\cite{pereira:2016}.
+
+
+\textcolor{blue}{Through the integration of COM into ESBMC ({\it i.e.}, ESBMC-GPU), one is able to analyze CUDA programs and verify the following properties:}
+
+\begin{itemize}
+	\item[--] \textcolor{blue}{\textbf{Data race.} ESBMC-GPU checks data race conditions, in order to detect if multiple threads perform unsynchronized access \textcolor{blue}{to the same memory locations};}
+	
+	\item[--] \textcolor{blue}{\textbf{Pointer safety.} ESBMC-GPU also ensures that {\it (i)} a pointer offset does not exceed object bounds and {\it (ii)} a pointer is neither {\tt NULL} nor invalid;}
+	
+	\item[--] \textcolor{blue}{\textbf{Array bounds.} ESBMC-GPU performs array-bound checking, in order to ensure that any variable, used as an array index, is within known bounds;}
+	
+	\item[--] \textcolor{blue}{\textbf{Arithmetic under- and overflow.} ESBMC-GPU checks whether a sum or product exceeds the memory limits that a variable can handle, which can cause an error capable of spreading through the entire execution path;}
+	
+	\item[--] \textcolor{blue}{\textbf{Division by zero.} ESBMC-GPU analyzes whether denominators, in arithmetic expressions, lead to a division by zero;}
+	
+	\item[--] \textcolor{blue}{\textbf{User-specified assertions.\ } ESBMC-GPU considers all assertions specified by users, which is essential to a thorough verification process, as some specific possible violations must be explicitly pointed out.}
+\end{itemize}
+
+In order to check the aforementioned properties, ESBMC-GPU explicitly explores the possible interleavings (up to the given context bound) and calls the single-threaded BMC procedure on each one, whenever it reaches an RT leaf node. Then, the mentioned procedure will stop if it finds a bug or when all possible RT interleavings \textcolor{blue}{have been systematically explored}~\cite{pereira:2016}. \textcolor{blue}{Furthermore, ESBMC-GPU has the following additional command-line options:
+\\
+\texttt{--no-assertions}: to ignore assertions; \\
+\texttt{--no-bounds-check}: to skip array bounds check; \\
+\texttt{--no-div-by-zero-check}: to skip division by zero check; \\
+\texttt{--no-pointer-check}: to skip pointer check; \\
+\texttt{--memory-leak-check}: to enable memory leak check; \\
+\texttt{--overflow-check}: to enable arithmetic over- and underflow check; \\
+\texttt{--deadlock-check}: to enable global and local deadlock check with mutex; \\
+\texttt{--data-races-check}: to enable data races check; \\
+\texttt{--lock-order-check}: to enable for lock acquisition ordering check; \\
+\texttt{--atomicity-check}: to enable atomicity check at visible assignments; \\
+\texttt{--memlimit}: to configure memory limit, of form ``100MB'' or ``2GB''; \\
+\texttt{--timeout}: to configure time limit, integer followed by \{s, m, or h\}; \\
+\texttt{--force-malloc-success}: to consider that there is always enough memory available in the device; \\
+\texttt{-DGPU\_threads=<$number$>}: to define the total number of threads by kernel. \\}
 
 %=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \section{Illustrative Example}
