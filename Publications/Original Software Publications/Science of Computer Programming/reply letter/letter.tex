@@ -173,7 +173,7 @@ The authors present an extension of the ESBMC tool, to verify CUDA GPU kernels b
   \item Can ESBMC-GPU handle variables in different types of memory? (Shared, global, thread registers?), and inter-warp communication, for instance? 
   
   \begin{quote}
-  \textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: Shall we reference your work about verifying multithread ANSI-C programs? Yes, please. Also reference our journal paper about esbmc-gpu.}}
+  \textcolor{blue}{\textbf{Response:} \textcolor{red}{Erickson: Could you implement this comment, please?} Lucas: Shall we reference your work about verifying multithread ANSI-C programs? Yes, please. Also reference our journal paper about esbmc-gpu.}
   \end{quote}
   
   \item In that respect, what does COM cover, and what remains to be added?
@@ -185,7 +185,7 @@ The authors present an extension of the ESBMC tool, to verify CUDA GPU kernels b
   \item Is the memory model for the different types of memory complete?
   
   \begin{quote}
-  \textcolor{blue}{\textbf{Response:} \textcolor{red}{Lucas: I didn't get it. Did you? Can you cite our TACAS 2014 paper? I suggest you to read that paper which briefly explains our memory model. Then you can properly reply to the reviewer and cite that paper.}\textcolor{green}{Eddie: Maybe he is talking about shared, register, global and local... We need to show that our memory model correctly represent such types...}}
+  \textcolor{blue}{\textbf{Response:} \textcolor{red}{Erickson: Could you implement this comment, please?} Lucas: Can you cite our TACAS 2014 paper? I suggest you to read that paper which briefly explains our memory model. Then you can properly reply to the reviewer and cite that paper.\textcolor{green}{Eddie: Maybe he is talking about shared, register, global and local... We need to show that our memory model correctly represent such types...}}
   \end{quote}
   
   \end{itemize}
@@ -193,7 +193,7 @@ The authors present an extension of the ESBMC tool, to verify CUDA GPU kernels b
 {\bf (2)} Another paragraph that raises questions is the second on page 3. It seems to say that COM uses pthread functions to simulate GPU kernels. Is that so, and why is it necessary to simulate them? Is this safe to do, because some features in CUDA are not available in C/C++. How do the authors handle those, or do they not?
 
 \begin{quote}
-\textcolor{blue}{\textbf{Response:}\textcolor{green}{Eddie: We have to comment on kernels, blocks and threads, in order to clarify that, showing that it it feasible ...}}
+\textcolor{blue}{\textbf{Response:}\textcolor{red}{Erickson: Could you implement this comment, please?} \textcolor{green}{Eddie: We have to comment on kernels, blocks and threads, in order to clarify that, showing that it it feasible ...}}
 \end{quote}
 
 {\bf (3)} At some point, the authors mention in passing that Microsoft C++ AMP projects have been used for the evaluation. Does this mean that this language is also supported, or are the benchmarks translated?
