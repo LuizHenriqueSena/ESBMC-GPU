@@ -58,4 +58,4 @@ with support to Ubuntu OS 16.04.
 	
 ###### 3. Finally, ESBMC-GPU building process is be invoked using make:
 
-	make
+	make.
