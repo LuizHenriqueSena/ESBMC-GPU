@@ -48,7 +48,7 @@ of the allocated matrix, even if only a submatrix of it is being used. In genera
 allocated in GPU memory space via cublasAlloc().
 */ 
 	//cudaMalloc((void**)&B, rows*cols*elemSize);
-        cudaMemcpy(B, A, rows*cols*elemSize, cudaMemcpyHostToDevice); 
+        cudaMemcpy(A, B, rows*cols*elemSize, cudaMemcpyDeviceToHost); 
 
 	
 	
@@ -69,7 +69,7 @@ pointer that points to an object, or part of an object, that was allocated in GP
 memory space via cublasAlloc(). 
 */
 
-	cudaMemcpy(A, B, rows*cols*elemSize, cudaMemcpyDeviceToHost);
+	cudaMemcpy(B, A, rows*cols*elemenSize, cudaMem
 	return CUBLAS_STATUS_NOT_INITIALIZED;
 
 }
