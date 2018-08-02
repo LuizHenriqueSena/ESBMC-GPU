@@ -16,6 +16,11 @@ typedef enum cublasstatus cublasStatus_t;
 typedef struct cublashandle {
 } cublasHandle_t;
 
+typedef enum cublasoperation {CUBLAS_OP_N,
+	CUBLAS_OP_T,
+	CUBLAS_OP_C} cuoperation;
+
+typedef enum cublasoperation cublasOperation_t;
 
 cublasStatus_t cublasCreate(cublasHandle_t *handle) {
 /*
@@ -90,7 +95,16 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle,
 			const float *B, int ldb,
 			const float *beta,
 			float *C, int ldc) {
+	int contadorX = 0, contadorY = 0;
+	int contadorZ = 0;
 
+	if (transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_N) {
+		float result = 0;
+		for(contadorY=0; contadorY<n; contadorY++) {
+			for(contadorX=0;contadorX<m; contadorX++) {
+				result =  (A[contadorX + contadorY*m] * B[contadorX*m + contadorY]);
+				}
+			C[contadorY*contadorZ + contadorY] = alpha(result) + beta*C[contadorY*contadorZ + contadorY];
 	return CUBLAS_STATUS_SUCCESS;
 
 }
