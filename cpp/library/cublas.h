@@ -97,15 +97,130 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle,
 			float *C, int ldc) {
 	int contadorX = 0, contadorY = 0;
 	int contadorZ = 0;
+	float result = 0;
 
 	if (transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_N) {
-		float result = 0;
-		for(contadorY=0; contadorY<n; contadorY++) {
-			for(contadorX=0;contadorX<m; contadorX++) {
-				result =  (A[contadorX + contadorY*m] * B[contadorX*m + contadorY]);
-				}
-			C[contadorY*contadorZ + contadorY] = alpha(result) + beta*C[contadorY*contadorZ + contadorY];
+		result = 0;
+		for(contadorZ=0; contadorZ<m; contadorZ++){
+			for(contadorY=0; contadorY<n; contadorY++) {
+				result = 0;
+				for(contadorX=0;contadorX<k; contadorX++) {
+					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
+					result =  (A[contadorX + contadorZ*k] * B[contadorX*n + contadorY]) + result;
+					}
+				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+			}
+		}
+
+	else if (transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_T) {
+		result = 0;
+		for(contadorZ=0; contadorZ<m; contadorZ++){
+			for(contadorY=0; contadorY<n; contadorY++) {
+				result = 0;
+				for(contadorX=0;contadorX<k; contadorX++) {
+					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
+					result =  (A[contadorX + contadorZ*k] * B[contadorX*n + contadorY]) + result;
+					}
+				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+			}
+		}
+
+	else if (transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_N) {
+		result = 0;
+		for(contadorZ=0; contadorZ<m; contadorZ++){
+			for(contadorY=0; contadorY<n; contadorY++) {
+				result = 0;
+				for(contadorX=0;contadorX<k; contadorX++) {
+					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
+					result =  (A[contadorX + contadorZ*k] * B[contadorX*n + contadorY]) + result;
+					}
+				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+			}
+		}
+
+	else if (transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_T) {
+		result = 0;
+		for(contadorZ=0; contadorZ<m; contadorZ++){
+			for(contadorY=0; contadorY<n; contadorY++) {
+				result = 0;
+				for(contadorX=0;contadorX<k; contadorX++) {
+					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
+					result =  (A[contadorX + contadorZ*k] * B[contadorX*n + contadorY]) + result;
+					}
+				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+			}
+		}
+
+
 	return CUBLAS_STATUS_SUCCESS;
 
 }
 
+cublasStatus_t cublasDgemm(cublasHandle_t handle,
+			cublasOperation_t transa, cublasOperation_t transb,
+			int m, int n, int k,
+			const double *alpha,
+			const double *A, int lda,
+			const double *B, int ldb,
+			const double *beta,
+			double *C, int ldc) {
+	int contadorX = 0, contadorY = 0;
+	int contadorZ = 0;
+	double result = 0;	
+
+	if (transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_N) {
+		result = 0;
+		for(contadorZ=0; contadorZ<m; contadorZ++){
+			for(contadorY=0; contadorY<n; contadorY++) {
+				result = 0;
+				for(contadorX=0;contadorX<k; contadorX++) {
+					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
+					result =  (A[contadorX + contadorZ*k] * B[contadorX*n + contadorY]) + result;
+					}
+				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+			}
+		}
+
+	else if (transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_T) {
+		result = 0;
+		for(contadorZ=0; contadorZ<m; contadorZ++){
+			for(contadorY=0; contadorY<n; contadorY++) {
+				result = 0;
+				for(contadorX=0;contadorX<k; contadorX++) {
+					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
+					result =  (A[contadorX + contadorZ*k] * B[contadorX*n + contadorY]) + result;
+					}
+				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+			}
+		}
+
+	else if (transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_N) {
+		result = 0;
+		for(contadorZ=0; contadorZ<m; contadorZ++){
+			for(contadorY=0; contadorY<n; contadorY++) {
+				result = 0;
+				for(contadorX=0;contadorX<k; contadorX++) {
+					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
+					result =  (A[contadorX + contadorZ*k] * B[contadorX*n + contadorY]) + result;
+					}
+				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+			}
+		}
+
+	else if (transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_T) {
+		result = 0;
+		for(contadorZ=0; contadorZ<m; contadorZ++){
+			for(contadorY=0; contadorY<n; contadorY++) {
+				result = 0;
+				for(contadorX=0;contadorX<k; contadorX++) {
+					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
+					result =  (A[contadorX + contadorZ*k] * B[contadorX*n + contadorY]) + result;
+					}
+				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+			}
+		}
+
+
+	return CUBLAS_STATUS_SUCCESS;
+
+}
