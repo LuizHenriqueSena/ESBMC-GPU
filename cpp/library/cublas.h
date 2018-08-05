@@ -225,4 +225,3 @@ cublasStatus_t cublasDgemm(cublasHandle_t handle,
 
 }
 
-
