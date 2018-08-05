@@ -104,6 +104,52 @@ void cudnnStatus_t cudnnDestroyTensorDescriptor(cudnnTensorDescriptor_t tensorDe
 	return CUDNN_STATUS_SUCCESS;
 }
 
+void cudnnStatus_t cudnnDestroyActivationDescriptor(cudnnActivationDescriptor_t activationDesc){
+	return CUDNN_STATUS_SUCCESS;
+}
+
+void cudnnStatus_t cudnnActivationForward(
+    cudnnHandle_t handle,
+    cudnnActivationDescriptor_t     activationDesc,
+    const void                     *alpha,
+    const cudnnTensorDescriptor_t   xDesc,
+    const void                     *x,
+    const void                     *beta,
+    const cudnnTensorDescriptor_t   yDesc,
+    void                           *y) {
+
+	int i = 0;
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
