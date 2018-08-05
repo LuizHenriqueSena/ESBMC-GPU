@@ -224,4 +224,36 @@ cublasStatus_t cublasDgemm(cublasHandle_t handle,
 	return CUBLAS_STATUS_SUCCESS;
 
 }
+cublasStatus_t cublasSaxpy(cublasHandle_t handle, int n,
+                           const float           *alpha,
+                           const float           *x, int incx,
+                           float                 *y, int incy) {
+		int i = 0;
+		for(i=0;i < n; i++){
+			k = 1+(i-1)*incx;
+			j = 1+(i-1)*incy;
+			y[j]= alpha*x[k] + y[j];
+		}
+		return CUBLAS_STATUS_SUCCESS;
+}
+
+cublasStatus_t cublasDaxpy(cublasHandle_t handle, int n,
+                           const double          *alpha,
+                           const double          *x, int incx,
+                           double                *y, int incy) {
+		int i = 0;
+		for(i=0;i < n; i++){
+			k = 1+(i-1)*incx;
+			j = 1+(i-1)*incy;
+			y[j]= alpha*x[k] + y[j];
+		}
+		return CUBLAS_STATUS_SUCCESS;
+}
+
+
+
+
+
+
+
 

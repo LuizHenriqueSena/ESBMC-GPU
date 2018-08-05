@@ -64,19 +64,31 @@ typedef enum cudnndatatype {
 
 typedef enum cudnndatatype cudnnDataType_t;
 
-void cudnnStatus_t cudnnCreateTensorDescriptor(cudnnTensorDescriptor_t tensordesc){
+float sigmoidFunction(float u) {
+	float result;
+	retorno = (1/(1 + powf(2.718281,(u*(-1)))));
+	return result;
+}
+
+float dSigmoidFunction(float u){
+	float result;
+	retorno = funcaoDeAtivacao(u)*(1 - funcaoDeAtivacao(u));
+	return result;
+}
+
+cudnnStatus_t cudnnCreateTensorDescriptor(cudnnTensorDescriptor_t tensordesc){
 	return CUDNN_STATUS_SUCCESS;
 }
 
-void cudnnStatus_t cudnnCreateActivationDescriptor(cudnnActivationDescriptor_t actvdesc){
+cudnnStatus_t cudnnCreateActivationDescriptor(cudnnActivationDescriptor_t actvdesc){
 	return CUDNN_STATUS_SUCCESS;
 }
 
-void cudnnStatus_t cudnnCreate(cudnnHandle_t cudnnhan) {
+cudnnStatus_t cudnnCreate(cudnnHandle_t cudnnhan) {
 	return CUDNN_STATUS_SUCCESS;
 }
 
-void cudnnStatus_t cudnnSetTensor4dDescriptor(
+cudnnStatus_t cudnnSetTensor4dDescriptor(
     cudnnTensorDescriptor_t tensorDesc,
     cudnnTensorFormat_t     format,
     cudnnDataType_t         dataType,
@@ -87,7 +99,7 @@ void cudnnStatus_t cudnnSetTensor4dDescriptor(
 	return CUDNN_STATUS_SUCCESS;
 }
 
-void cudnnStatus_t cudnnSetActivationDescriptor(
+cudnnStatus_t cudnnSetActivationDescriptor(
     cudnnActivationDescriptor_t         activationDesc,
     cudnnActivationMode_t               mode,
     cudnnNanPropagation_t               reluNanOpt,
@@ -96,19 +108,19 @@ void cudnnStatus_t cudnnSetActivationDescriptor(
 }
 
 
-void cudnnStatus_t cudnnDestroy(cudnnHandle_t cudnnhan) {
+cudnnStatus_t cudnnDestroy(cudnnHandle_t cudnnhan) {
 	return CUDNN_STATUS_SUCCESS;
 }
 
-void cudnnStatus_t cudnnDestroyTensorDescriptor(cudnnTensorDescriptor_t tensorDesc){
+cudnnStatus_t cudnnDestroyTensorDescriptor(cudnnTensorDescriptor_t tensorDesc){
 	return CUDNN_STATUS_SUCCESS;
 }
 
-void cudnnStatus_t cudnnDestroyActivationDescriptor(cudnnActivationDescriptor_t activationDesc){
+cudnnStatus_t cudnnDestroyActivationDescriptor(cudnnActivationDescriptor_t activationDesc){
 	return CUDNN_STATUS_SUCCESS;
 }
 
-void cudnnStatus_t cudnnActivationForward(
+cudnnStatus_t cudnnActivationForward(
     cudnnHandle_t handle,
     cudnnActivationDescriptor_t     activationDesc,
     const void                     *alpha,
@@ -119,6 +131,31 @@ void cudnnStatus_t cudnnActivationForward(
     void                           *y) {
 
 	int i = 0;
+	int limit = 5;
+	
+	for(i = 0; i<limit; i++) {
+	y[i] = sigmoidFunction(x[i]);
+}
+	return CUDNN_STATUS_SUCCESS;
+}
+
+cudnnStatus_t cudnnActivationBackward(
+    cudnnHandle_t                    handle,
+    cudnnActivationDescriptor_t      activationDesc,
+    const void                      *alpha,
+    const cudnnTensorDescriptor_t    yDesc,
+    const void                      *y,
+    const cudnnTensorDescriptor_t    dyDesc,
+    const void                      *dy,
+    const cudnnTensorDescriptor_t    xDesc,
+    const void                      *x,
+    const void                      *beta,
+    const cudnnTensorDescriptor_t    dxDesc,
+    void                            *dx) {
+
+	return CUDNN_STATUS_SUCCESS;
+}
+
 	
 
 
