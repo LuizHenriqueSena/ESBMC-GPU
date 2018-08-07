@@ -251,9 +251,3 @@ cublasStatus_t cublasDaxpy(cublasHandle_t handle, int n,
 }
 
 
-
-
-
-
-
-

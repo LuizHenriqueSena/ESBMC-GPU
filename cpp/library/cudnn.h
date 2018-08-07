@@ -153,42 +153,11 @@ cudnnStatus_t cudnnActivationBackward(
     const cudnnTensorDescriptor_t    dxDesc,
     void                            *dx) {
 
+	int contador = 0;
+	for(contador = 0; contador< 5; contador++){
+		dx[contador] = (y[contador]*(1 - y[contador]))*dy[contador];
+	}
 	return CUDNN_STATUS_SUCCESS;
 }
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
