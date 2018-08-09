@@ -53,8 +53,10 @@ of the allocated matrix, even if only a submatrix of it is being used. In genera
 allocated in GPU memory space via cublasAlloc().
 */ 
 	//cudaMalloc((void**)&B, rows*cols*elemSize);
-        cudaMemcpy(B, A, rows*cols*elemSize, cudaMemcpyHostToDevice); 
-
+	//Due to the Fortran column major the ldb must be the rows of matrix A
+	__ESBMC_assert(ldb == rows, "Full matrix is not bein copied");
+        cudaMemcpy(&A, &B, 10*sizeof(float), cudaMemcpyDeviceToHost); 
+	//__ESBMC_assert(rows*cols*elemSize > 0, "Size to be allocated may not be less than zero");
 	
 	
 	return CUBLAS_STATUS_SUCCESS;
@@ -74,7 +76,8 @@ pointer that points to an object, or part of an object, that was allocated in GP
 memory space via cublasAlloc(). 
 */
 
-	cudaMemcpy(A, B, rows*cols*elemSize, cudaMemcpyDeviceToHost);
+	cudaMemcpy(&A, &B, rows*cols*elemSize, cudaMemcpyDeviceToHost);
+	//__ESBMC_assert(rows*cols*elemSize > 0, "Size to be allocated may not be less than zero");	
 	return CUBLAS_STATUS_NOT_INITIALIZED;
 
 }
@@ -98,8 +101,10 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle,
 	int contadorX = 0, contadorY = 0;
 	int contadorZ = 0;
 	float result = 0;
-
-	if (transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_N) {
+	//__ESBMC_assert(lda == m || lda == k, "The leading dimensions doens't correspond to matrix A dimensions. Array out of bounds.");
+	//__ESBMC_assert(ldb == k || ldb == n, "The leading dimensions doens't correspond to matrix B dimensions. Array out of bounds.");
+	//__ESBMC_assert(ldc == m || ldc == k, "The leading dimensions doens't correspond to matrix C dimensions. Array out of bounds.");
+	if ((transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_N)) {
 		result = 0;
 		for(contadorZ=0; contadorZ<m; contadorZ++){
 			for(contadorY=0; contadorY<n; contadorY++) {
@@ -108,11 +113,12 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle,
 					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
 					result =  (A[contadorX + contadorZ*k] * B[contadorX*n + contadorY]) + result;
 					}
-				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+				C[contadorY + contadorZ*m] = alpha[0]*result + beta[0]*C[contadorY + contadorZ*m];
 			}
 		}
+	}
 
-	else if (transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_T) {
+	else if ((transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_T)) {
 		result = 0;
 		for(contadorZ=0; contadorZ<m; contadorZ++){
 			for(contadorY=0; contadorY<n; contadorY++) {
@@ -121,11 +127,11 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle,
 					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
 					result =  (A[contadorX + contadorZ*k] * B[contadorX + contadorY*n]) + result;
 					}
-				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+				C[contadorY + contadorZ*m] = alpha[0]*result + beta[0]*C[contadorY + contadorZ*m];
 			}
 		}
-
-	else if (transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_N) {
+	}
+	else if ((transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_N)) {
 		result = 0;
 		for(contadorZ=0; contadorZ<m; contadorZ++){
 			for(contadorY=0; contadorY<n; contadorY++) {
@@ -134,11 +140,11 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle,
 					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
 					result =  (A[contadorX*k + contadorZ] * B[contadorX*n + contadorY]) + result;
 					}
-				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+				C[contadorY + contadorZ*m] = alpha[0]*result + beta[0]*C[contadorY + contadorZ*m];
 			}
 		}
-
-	else if (transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_T) {
+	}
+	else if ((transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_T)) {
 		result = 0;
 		for(contadorZ=0; contadorZ<m; contadorZ++){
 			for(contadorY=0; contadorY<n; contadorY++) {
@@ -147,11 +153,11 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle,
 					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
 					result =  (A[contadorX*k + contadorZ] * B[contadorX + contadorY*n]) + result;
 					}
-				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+				C[contadorY + contadorZ*m] = alpha[0]*result + beta[0]*C[contadorY + contadorZ*m];
 			}
 		}
 
-
+	}
 	return CUBLAS_STATUS_SUCCESS;
 
 }
@@ -168,7 +174,7 @@ cublasStatus_t cublasDgemm(cublasHandle_t handle,
 	int contadorZ = 0;
 	double result = 0;	
 
-	if (transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_N) {
+	if ((transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_N)) {
 		result = 0;
 		for(contadorZ=0; contadorZ<m; contadorZ++){
 			for(contadorY=0; contadorY<n; contadorY++) {
@@ -177,11 +183,11 @@ cublasStatus_t cublasDgemm(cublasHandle_t handle,
 					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
 					result =  (A[contadorX + contadorZ*k] * B[contadorX*n + contadorY]) + result;
 					}
-				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+				C[contadorY + contadorZ*m] = alpha[0]*result + beta[0]*C[contadorY + contadorZ*m];
 			}
 		}
-
-	else if (transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_T) {
+	}
+	else if ((transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_T)) {
 		result = 0;
 		for(contadorZ=0; contadorZ<m; contadorZ++){
 			for(contadorY=0; contadorY<n; contadorY++) {
@@ -190,11 +196,11 @@ cublasStatus_t cublasDgemm(cublasHandle_t handle,
 					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
 					result =  (A[contadorX + contadorZ*k] * B[contadorX + contadorY*n]) + result;
 					}
-				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+				C[contadorY + contadorZ*m] = alpha[0]*result + beta[0]*C[contadorY + contadorZ*m];
 			}
 		}
-
-	else if (transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_N) {
+	}
+	else if ((transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_N)) {
 		result = 0;
 		for(contadorZ=0; contadorZ<m; contadorZ++){
 			for(contadorY=0; contadorY<n; contadorY++) {
@@ -203,11 +209,11 @@ cublasStatus_t cublasDgemm(cublasHandle_t handle,
 					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
 					result =  (A[contadorX*k + contadorZ] * B[contadorX*n + contadorY]) + result;
 					}
-				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+				C[contadorY + contadorZ*m] = alpha[0]*result + beta[0]*C[contadorY + contadorZ*m];
 			}
 		}
-
-	else if (transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_T) {
+	}
+	else if ((transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_T)) {
 		result = 0;
 		for(contadorZ=0; contadorZ<m; contadorZ++){
 			for(contadorY=0; contadorY<n; contadorY++) {
@@ -216,11 +222,11 @@ cublasStatus_t cublasDgemm(cublasHandle_t handle,
 					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
 					result =  (A[contadorX*k + contadorZ] * B[contadorX + contadorY*n]) + result;
 					}
-				C[contadorY + contadorZ*m] = alpha(result) + beta*C[contadorY + contadorZ*m];
+				C[contadorY + contadorZ*m] = alpha[0]*result + beta[0]*C[contadorY + contadorZ*m];
 			}
 		}
 
-
+	}
 	return CUBLAS_STATUS_SUCCESS;
 
 }
@@ -229,10 +235,11 @@ cublasStatus_t cublasSaxpy(cublasHandle_t handle, int n,
                            const float           *x, int incx,
                            float                 *y, int incy) {
 		int i = 0;
+		int k, j;
 		for(i=0;i < n; i++){
 			k = 1+(i-1)*incx;
 			j = 1+(i-1)*incy;
-			y[j]= alpha*x[k] + y[j];
+			y[j]= ((float)alpha[0])*x[k] + y[j];
 		}
 		return CUBLAS_STATUS_SUCCESS;
 }
@@ -242,10 +249,11 @@ cublasStatus_t cublasDaxpy(cublasHandle_t handle, int n,
                            const double          *x, int incx,
                            double                *y, int incy) {
 		int i = 0;
+		int k, j;
 		for(i=0;i < n; i++){
 			k = 1+(i-1)*incx;
 			j = 1+(i-1)*incy;
-			y[j]= alpha*x[k] + y[j];
+			y[j]= ((float)alpha[0])*x[k] + y[j];
 		}
 		return CUBLAS_STATUS_SUCCESS;
 }
