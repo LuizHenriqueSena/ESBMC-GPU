@@ -1,4 +1,5 @@
 #include <cuda.h>
+#include <cublas.h>
 
 typedef struct cudnnactivationdescriptor{
 }cudnnActivationDescriptor_t;
@@ -160,4 +161,111 @@ cudnnStatus_t cudnnActivationBackward(
 	return CUDNN_STATUS_SUCCESS;
 }
 
+cudnnStatus_t cudnnAddTensor(
+    cudnnHandle_t                     handle,
+    const void                       *alpha,
+    const cudnnTensorDescriptor_t     aDesc,
+    const void                       *A,
+    const void                       *beta,
+    const cudnnTensorDescriptor_t     cDesc,
+    void                             *C) {
+
+}
+
+
+cudnnStatus_t cudnnConvolutionBackwardBias(
+    cudnnHandle_t                    handle,
+    const void                      *alpha,
+    const cudnnTensorDescriptor_t    dyDesc,
+    const void                      *dy,
+    const void                      *beta,
+    const cudnnTensorDescriptor_t    dbDesc,
+    void                            *db) {
+
+}
+
+cudnnStatus_t cudnnConvolutionBackwardData(
+    cudnnHandle_t                       handle,
+    const void                         *alpha,
+    const cudnnFilterDescriptor_t       wDesc,
+    const void                         *w,
+    const cudnnTensorDescriptor_t       dyDesc,
+    const void                         *dy,
+    const cudnnConvolutionDescriptor_t  convDesc,
+    cudnnConvolutionBwdDataAlgo_t       algo,
+    void                               *workSpace,
+    size_t                              workSpaceSizeInBytes,
+    const void                         *beta,
+    const cudnnTensorDescriptor_t       dxDesc,
+    void                               *dx) {
+
+}
+
+cudnnStatus_t cudnnConvolutionBackwardFilter(
+    cudnnHandle_t                       handle,
+    const void                         *alpha,
+    const cudnnTensorDescriptor_t       xDesc,
+    const void                         *x,
+    const cudnnTensorDescriptor_t       dyDesc,
+    const void                         *dy,
+    const cudnnConvolutionDescriptor_t  convDesc,
+    cudnnConvolutionBwdFilterAlgo_t     algo,
+    void                               *workSpace,
+    size_t                              workSpaceSizeInBytes,
+    const void                         *beta,
+    const cudnnFilterDescriptor_t       dwDesc,
+    void                               *dw) {
+
+}
+
+cudnnStatus_t cudnnConvolutionForward(
+    cudnnHandle_t                       handle,
+    const void                         *alpha,
+    const cudnnTensorDescriptor_t       xDesc,
+    const void                         *x,
+    const cudnnFilterDescriptor_t       wDesc,
+    const void                         *w,
+    const cudnnConvolutionDescriptor_t  convDesc,
+    cudnnConvolutionFwdAlgo_t           algo,
+    void                               *workSpace,
+    size_t                              workSpaceSizeInBytes,
+    const void                         *beta,
+    const cudnnTensorDescriptor_t       yDesc,
+    void                               *y) {
+
+}
+
+ cudnnStatus_t cudnnDivisiveNormalizationBackward(
+    cudnnHandle_t                    handle,
+    cudnnLRNDescriptor_t             normDesc,
+    cudnnDivNormMode_t               mode,
+    const void                      *alpha,
+    const cudnnTensorDescriptor_t    xDesc,
+    const void                      *x,
+    const void                      *means,
+    const void                      *dy,
+    void                            *temp,
+    void                            *temp2,
+    const void                      *beta,
+    const cudnnTensorDescriptor_t    dxDesc,
+    void                            *dx,
+    void                            *dMeans) {
+
+}
+
+cudnnStatus_t cudnnDivisiveNormalizationForward(
+    cudnnHandle_t                    handle,
+    cudnnLRNDescriptor_t             normDesc,
+    cudnnDivNormMode_t               mode,
+    const void                      *alpha,
+    const cudnnTensorDescriptor_t    xDesc,
+    const void                      *x,
+    const void                      *means,
+    void                            *temp,
+    void                            *temp2,
+    const void                      *beta,
+    const cudnnTensorDescriptor_t    yDesc,
+    void                            *y) {
+
+}
 

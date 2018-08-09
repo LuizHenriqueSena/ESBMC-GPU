@@ -52,11 +52,9 @@ of the allocated matrix, even if only a submatrix of it is being used. In genera
  B is a device pointer that points to an object, or part of an object, that was 
 allocated in GPU memory space via cublasAlloc().
 */ 
-	//cudaMalloc((void**)&B, rows*cols*elemSize);
 	//Due to the Fortran column major the ldb must be the rows of matrix A
 	__ESBMC_assert(ldb == rows, "Full matrix is not bein copied");
-        cudaMemcpy(&A, &B, 10*sizeof(float), cudaMemcpyDeviceToHost); 
-	//__ESBMC_assert(rows*cols*elemSize > 0, "Size to be allocated may not be less than zero");
+        cudaMemcpy(&B, &A, rows*cols*elemSize, cudaMemcpyDeviceToHost); 
 	
 	
 	return CUBLAS_STATUS_SUCCESS;
@@ -76,19 +74,257 @@ pointer that points to an object, or part of an object, that was allocated in GP
 memory space via cublasAlloc(). 
 */
 
-	cudaMemcpy(&A, &B, rows*cols*elemSize, cudaMemcpyDeviceToHost);
-	//__ESBMC_assert(rows*cols*elemSize > 0, "Size to be allocated may not be less than zero");	
-	return CUBLAS_STATUS_NOT_INITIALIZED;
+	__ESBMC_assert(lda == cols, "Full matrix is not bein recovered");
+	cudaMemcpy(&B, &A, rows*cols*elemSize, cudaMemcpyDeviceToHost);
+	return CUBLAS_STATUS_SUCCESS;
 
 }
+
+cublasStatus_t cublasSetVector(int n,  int elemSize,
+                const void *A, int lda, void *B, int ldb) {
+ 
+
+	__ESBMC_assert(lda == ldb, "Full matrix is not bein copied");
+        cudaMemcpy(&B, &A, n*elemSize, cudaMemcpyHostToDevice); 
+	
+	
+	return CUBLAS_STATUS_SUCCESS;
+}
+
+cublasStatus_t cublasGetVector(int n,  int elemSize,
+                const void *A, int lda, void *B, int ldb) {
+
+	__ESBMC_assert(ldb == lda, "Full matrix is not bein copied");
+        cudaMemcpy(&B, &A, n*elemSize, cudaMemcpyDeviceToHost); 
+	
+	
+	return CUBLAS_STATUS_SUCCESS;
+}
+
+cublasStatus_t cublasIsamin(cublasHandle_t handle, int n,
+                            const float *x, int incx, int *result){
+
+		int i = 0;
+		int j;
+		result = 0;
+		for(i=0;i < n; i++){
+			j = 1+(i-1)*incx;
+			if(x[result[0]] >= x[j]) {
+				result[0] = j;
+		}
+		return CUBLAS_STATUS_SUCCESS;
+}
+}
+
+cublasStatus_t cublasIdamin(cublasHandle_t handle, int n,
+                            const double *x, int incx, int *result){
+
+		int i = 0;
+		int j;
+		result = 0;
+		for(i=0;i < n; i++){
+			j = 1+(i-1)*incx;
+			if(x[result[0]] >= x[j]) {
+				result[0] = j;
+		}
+		return CUBLAS_STATUS_SUCCESS;
+}
+}
+
+cublasStatus_t  cublasSasum(cublasHandle_t handle, int n,
+                            const float           *x, int incx, float  *result){
+
+		int i = 0;
+		int j;
+		float calculate = 0;
+		result = 0;
+		for(i=0;i < n; i++){
+			j = 1+(i-1)*incx;
+			calculate = x[j] + calculate;
+		}
+		result[0] = calculate;
+		return CUBLAS_STATUS_SUCCESS;
+}
+
+
+
+cublasStatus_t  cublasDasum(cublasHandle_t handle, int n,
+                            const double          *x, int incx, double *result){
+
+		int i = 0;
+		int j;
+		double calculate = 0;
+		result = 0;
+		for(i=0;i < n; i++){
+			j = 1+(i-1)*incx;
+			calculate = x[j] + calculate;
+		}
+		result[0] = calculate;
+		return CUBLAS_STATUS_SUCCESS;
+}
+
+
+cublasStatus_t cublasIsamax(cublasHandle_t handle, int n,
+                            const float *x, int incx, int *result){
+
+		int i = 0;
+		int j;
+		result = 0;
+		for(i=0;i < n; i++){
+			j = 1+(i-1)*incx;
+			if(x[result[0]] <= x[j]) {
+				result[0] = j;
+		}
+		return CUBLAS_STATUS_SUCCESS;
+}
+}
+
+
+cublasStatus_t cublasIdamax(cublasHandle_t handle, int n,
+                            const double *x, int incx, int *result){
+
+		int i = 0;
+		int j;
+		result = 0;
+		for(i=0;i < n; i++){
+			j = 1+(i-1)*incx;
+			if(x[result[0]] <= x[j]) {
+				result[0] = j;
+		}
+		return CUBLAS_STATUS_SUCCESS;
+}
+}
+
 
 cublasStatus_t  cublasSscal(cublasHandle_t handle, int n,
                             const float           *alpha,
                             float           *x, int incx) {
 
-
-	return CUBLAS_STATUS_SUCCESS;
+		int i = 0;
+		int j;
+		for(i=0;i < n; i++){
+			j = 1+(i-1)*incx;
+			x[j]= ((float)alpha[0])*x[j];
+		}
+		return CUBLAS_STATUS_SUCCESS;
 }
+
+cublasStatus_t  cublasDscal(cublasHandle_t handle, int n,
+                            const double           *alpha,
+                            double           *x, int incx) {
+
+		int i = 0;
+		int j;
+		for(i=0;i < n; i++){
+			j = 1+(i-1)*incx;
+			x[j]= ((double)alpha[0])*x[j];
+		}
+		return CUBLAS_STATUS_SUCCESS;
+}
+
+
+cublasStatus_t cublasSswap(cublasHandle_t handle, int n, float           *x,
+                           int incx, float           *y, int incy){
+
+		int i = 0;
+		int j, k;;
+		float aux = 0;
+		for(i=0;i < n; i++){
+			k = 1+(i-1)*incx;
+			j = 1+(i-1)*incy;
+			aux = y[j];
+			y[j]= x[k];
+			x[k] = y[j];
+		}
+		return CUBLAS_STATUS_SUCCESS;
+}
+
+
+cublasStatus_t cublasDswap(cublasHandle_t handle, int n, double          *x,
+                           int incx, double          *y, int incy){
+
+		int i = 0;
+		int j, k;
+		double aux = 0;
+		for(i=0;i < n; i++){
+			k = 1+(i-1)*incx;
+			j = 1+(i-1)*incy;
+			aux = y[j];
+			y[j]= x[k];
+			x[k] = y[j];
+		}
+		return CUBLAS_STATUS_SUCCESS;
+}
+
+cublasStatus_t cublasSdot (cublasHandle_t handle, int n,
+                           const float           *x, int incx,
+                           const float           *y, int incy,
+                           float           *result){
+
+		int i = 0;
+		int j, k;
+		float aux = 0;
+		for(i=0;i < n; i++){
+			k = 1+(i-1)*incx;
+			j = 1+(i-1)*incy;
+			aux = y[j]*x[k] + aux;
+		}
+		result[0] = aux;
+		return CUBLAS_STATUS_SUCCESS;
+}
+
+
+
+cublasStatus_t cublasDdot (cublasHandle_t handle, int n,
+                           const double          *x, int incx,
+                           const double          *y, int incy,
+                           double          *result){
+
+		int i = 0;
+		int j, k;
+		double aux = 0;
+		for(i=0;i < n; i++){
+			k = 1+(i-1)*incx;
+			j = 1+(i-1)*incy;
+			aux = y[j]*x[k] + aux;
+		}
+		result[0] = aux;
+		return CUBLAS_STATUS_SUCCESS;
+}
+
+
+
+
+cublasStatus_t cublasScopy(cublasHandle_t handle, int n,
+                           const float           *x, int incx,
+                           float                 *y, int incy){
+
+		int i = 0;
+		int j, k;
+		for(i=0;i < n; i++){
+			k = 1+(i-1)*incx;
+			j = 1+(i-1)*incy;
+			y[j]= x[k];
+		}
+		return CUBLAS_STATUS_SUCCESS;
+}
+
+
+cublasStatus_t cublasDcopy(cublasHandle_t handle, int n,
+                           const double          *x, int incx,
+                           double                *y, int incy){
+
+		int i = 0;
+		int j, k;
+		for(i=0;i < n; i++){
+			k = 1+(i-1)*incx;
+			j = 1+(i-1)*incy;
+			y[j]= x[k];
+		}
+		return CUBLAS_STATUS_SUCCESS;
+}
+
+
 
 cublasStatus_t cublasSgemm(cublasHandle_t handle,
 			cublasOperation_t transa, cublasOperation_t transb,
@@ -253,7 +489,7 @@ cublasStatus_t cublasDaxpy(cublasHandle_t handle, int n,
 		for(i=0;i < n; i++){
 			k = 1+(i-1)*incx;
 			j = 1+(i-1)*incy;
-			y[j]= ((float)alpha[0])*x[k] + y[j];
+			y[j]= ((double)alpha[0])*x[k] + y[j];
 		}
 		return CUBLAS_STATUS_SUCCESS;
 }
