@@ -1,5 +1,5 @@
 #include <cuda.h>
-#include <cublas.h>
+
 
 typedef struct cudnnactivationdescriptor{
 }cudnnActivationDescriptor_t;
@@ -19,7 +19,7 @@ typedef enum cudnnstatus {
 	CUDNN_STATUS_NOT_SUPPORTED,
 	CUDNN_STATUS_LICENSE_ERROR,
 	CUDNN_STATUS_RUNTIME_PREREQUISITE_MISSING,
-	CUDNN_STATUS_RUNTIME_IN_PROGRESS,s
+	CUDNN_STATUS_RUNTIME_IN_PROGRESS,
 	CUDNN_STATUS_RUNTIME_FP_OVERFLOW} cudnnstt;
 
 typedef enum cudnnstatus cudnnStatus_t;
@@ -27,8 +27,26 @@ typedef enum cudnnstatus cudnnStatus_t;
 typedef struct cudnntensordesc {
 } cudnnTensorDescriptor_t;
 
-typedef struct cudnnactvdesc {
-} cudnnActivationDescriptor_t;
+typedef struct cudnnfilterdesc {
+} cudnnFilterDescriptor_t;
+
+typedef struct cudnnconvoldesc {
+} cudnnConvolutionDescriptor_t;
+
+typedef struct cudnnconvolbwd {
+} cudnnConvolutionBwdDataAlgo_t;
+
+typedef struct cudnnconvbwdfilter {
+} cudnnConvolutionBwdFilterAlgo_t;
+
+typedef struct cudnnconvolvfwdalg {
+} cudnnConvolutionFwdAlgo_t;
+
+typedef struct cudnnlrndesc {
+} cudnnLRNDescriptor_t;
+
+typedef struct cudnndivnormmd {
+} cudnnDivNormMode_t;
 
 typedef enum cudnnactivationmode{
 	CUDNN_ACTIVATION_SIGMOID,
@@ -67,13 +85,13 @@ typedef enum cudnndatatype cudnnDataType_t;
 
 float sigmoidFunction(float u) {
 	float result;
-	retorno = (1/(1 + powf(2.718281,(u*(-1)))));
+	result = (1/(1 + powf(2.718281,(u*(-1)))));
 	return result;
 }
 
 float dSigmoidFunction(float u){
 	float result;
-	retorno = funcaoDeAtivacao(u)*(1 - funcaoDeAtivacao(u));
+	result = sigmoidFunction(u)*(1 - sigmoidFunction(u));
 	return result;
 }
 
@@ -85,7 +103,7 @@ cudnnStatus_t cudnnCreateActivationDescriptor(cudnnActivationDescriptor_t actvde
 	return CUDNN_STATUS_SUCCESS;
 }
 
-cudnnStatus_t cudnnCreate(cudnnHandle_t cudnnhan) {
+cudnnStatus_t cudnnCreate(cudnnHandle_t * cudnnhan) {
 	return CUDNN_STATUS_SUCCESS;
 }
 
@@ -124,12 +142,12 @@ cudnnStatus_t cudnnDestroyActivationDescriptor(cudnnActivationDescriptor_t activ
 cudnnStatus_t cudnnActivationForward(
     cudnnHandle_t handle,
     cudnnActivationDescriptor_t     activationDesc,
-    const void                     *alpha,
+    const float                     *alpha,
     const cudnnTensorDescriptor_t   xDesc,
-    const void                     *x,
-    const void                     *beta,
+    const float                     *x,
+    const float                     *beta,
     const cudnnTensorDescriptor_t   yDesc,
-    void                           *y) {
+    float                           *y) {
 
 	int i = 0;
 	int limit = 5;
@@ -143,16 +161,16 @@ cudnnStatus_t cudnnActivationForward(
 cudnnStatus_t cudnnActivationBackward(
     cudnnHandle_t                    handle,
     cudnnActivationDescriptor_t      activationDesc,
-    const void                      *alpha,
+    const float                      *alpha,
     const cudnnTensorDescriptor_t    yDesc,
-    const void                      *y,
+    const float                      *y,
     const cudnnTensorDescriptor_t    dyDesc,
-    const void                      *dy,
+    const float                      *dy,
     const cudnnTensorDescriptor_t    xDesc,
-    const void                      *x,
-    const void                      *beta,
+    const float                      *x,
+    const float                      *beta,
     const cudnnTensorDescriptor_t    dxDesc,
-    void                            *dx) {
+    float                            *dx) {
 
 	int contador = 0;
 	for(contador = 0; contador< 5; contador++){
