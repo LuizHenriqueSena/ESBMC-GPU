@@ -1,4 +1,5 @@
 #include <cuda.h>
+#include <cuda_powf.h>
 
 
 typedef struct cudnnactivationdescriptor{
@@ -83,9 +84,12 @@ typedef enum cudnndatatype {
 
 typedef enum cudnndatatype cudnnDataType_t;
 
+
 float sigmoidFunction(float u) {
 	float result;
+	__ESBMC_assume(u < 0);
 	result = (1/(1 + powf(2.718281,(u*(-1)))));
+
 	return result;
 }
 
