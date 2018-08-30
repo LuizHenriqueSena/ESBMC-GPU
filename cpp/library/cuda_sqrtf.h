@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <stdio.h>
+#include <cuda_builtin_clz.h>
 
 typedef float fp_t;
 typedef uint32_t rep_t;
@@ -12,12 +13,14 @@ static inline int rep_clz(rep_t a) {
 }
 
 static inline rep_t toRep(fp_t x) {
-    const union { rep_t i; fp_t f; } rep = { .f = x };
+    union { rep_t i; fp_t f; } rep;
+	rep.f = x;
     return rep.i;
 }
 
 static inline fp_t fromRep(rep_t x) {
-    const union { rep_t i; fp_t f; } rep = { .i = x };
+    union { rep_t i; fp_t f; } rep;
+	rep.i = x;
     return rep.f;
 }
 

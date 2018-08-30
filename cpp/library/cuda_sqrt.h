@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <limits.h>
+#include <cuda_builtin_clz.h>
 
 typedef double db_t;
 typedef uint64_t dbrep_t;
@@ -14,12 +15,14 @@ static inline int rep_clz_sqrt(dbrep_t a) {
 }
 
 static inline dbrep_t toRep_sqrt(db_t x) {
-    const union { dbrep_t i; db_t f; } rep = { .f = x };
+    union { dbrep_t i; db_t f; } rep;
+	rep.f = x;
     return rep.i;
 }
 
 static inline db_t fromRep_Sqrt(dbrep_t x) {
-    const union { dbrep_t i; db_t f; } rep = { .i = x };
+    union { dbrep_t i; db_t f; } rep;
+	rep.i = x;
     return rep.f;
 }
 
