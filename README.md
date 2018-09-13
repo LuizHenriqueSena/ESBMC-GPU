@@ -54,7 +54,7 @@ with support to Ubuntu OS 16.04.
 
 ###### 2. After this process, a configuration file will be generated and then use:
 
-	./configure --with-z3=$HOME/z3 --with-boolector=$HOME/z3 --disable-werror
+	./configure --with-z3=$HOME/z3 --with-boolector=$HOME/ --disable-werror
 	
 ###### 3. Finally, ESBMC-GPU building process is be invoked using make:
 
